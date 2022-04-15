@@ -5,7 +5,7 @@
 
 **Course Name**: Probability and Random Variables
 
-**Course Duration**: Second Semester, 2022.
+**Course Administrativia**: Indian Institute of Technology, Hyderabad (IITH), Second Semester, 2022.
 
 **Instructor**: Dr. G. V. V. Sharma
 
