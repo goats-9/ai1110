@@ -1,5 +1,5 @@
 '''
-Author: Gautam Singh
+Author: Gautam Singh.
 Date: April 15, 2022.
 
 -----Documentation-----
@@ -8,11 +8,11 @@ the maximum, minimum, and range of the data.
 '''
 
 import numpy as np
+import pandas as pd
 
-A = np.array([55, 36, 95, 73, 60, 42, 25, 78, 75, 62])
-A_sort = np.sort(A)
-print("The raw data is:", A)
-print("The sorted data is:", A_sort)
-print("The maximum marks are:", A_sort[-1])
-print("The minimum marks are:", A_sort[0])
-print("The range of the data is:", A_sort[-1] - A_sort[0])
+df = pd.read_excel('../tables/raw.xlsx', 'Sheet1')
+A = df.columns.to_numpy()
+A_srt = np.sort(A)
+df_srt = pd.DataFrame(A_srt)
+df_srt = df_srt.transpose()
+df_srt.to_excel('../tables/sort.xlsx', header=False, index=False)
