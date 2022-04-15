@@ -159,21 +159,20 @@ This document contains the solution to Example 1 of Chapter 14 (Statistics) in t
 Consider the marks obtained by 10 students in a mathematics test as given below. Find the highest and lowest marks and thus, the range of this data.
 \begin{table}[!htb]
 \centering
-\input{tables/tab1}
+\input{tables/raw}
 \caption{Raw Data}
-\label{table:tab1}
+\label{table:raw}
 \end{table}
 \end{problem}
 
-\solution We begin by sorting the data in Table \eqref{table:tab1} in ascending order. The sorted data is shown in Table \eqref{table:tab2}.
+\solution We begin by sorting the data in Table \eqref{table:raw} in ascending order. The sorted data is shown in Table \eqref{table:sort}.
 
 \begin{table}[!htb]
 \centering
-\input{tables/tab2}
+\input{tables/sort}
 \caption{Sorted Data}
-\label{table:tab2}
+\label{table:sort}
 \end{table}
 
-Clearly, the maximum marks is 95, the minimum marks is 25, and the range is $95 - 25 = 70$. The Python code \texttt{./codes/3{\_}1.py} sorts the initial unsorted array in ascending order and outputs the maximum, minimum and range of the data. 
-
+Clearly, the maximum marks is 95, the minimum marks is 25, and the range is $95 - 25 = 70$. The Python code \texttt{./codes/3{\_}1.py} reads the initial unsorted array from an \texttt{.xlsx} file, sorts it in ascending order and dumps the sorted array to another \texttt{.xlsx} file. 
 \end{document}
