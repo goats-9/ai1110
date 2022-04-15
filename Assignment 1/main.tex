@@ -137,8 +137,8 @@ columns=fullflexible
 \makeatother
 \let\StandardTheFigure\thefigure
 \let\vec\mathbf
-%\renewcommand{\thefigure}{\theproblem.\arabic{figure}}
-\renewcommand{\thefigure}{\theproblem}
+\renewcommand{\thefigure}{\arabic{figure}}
+%\renewcommand{\thefigure}{\theproblem}
 %\setlist[enumerate,1]{before=\renewcommand\theequation{\theenumi.\arabic{equation}}
 %\counterwithin{equation}{enumi}
 %\renewcommand{\theequation}{\arabic{subsection}.\arabic{equation}}
@@ -151,25 +151,41 @@ columns=fullflexible
 \author{Gautam Singh (CS21BTECH11018)}
 % make the title area
 \maketitle
-\begin{problem}[5. c]
-Use graph paper for this question (Take 2cm = 1 unit along both x and y axis). ABCD is a quadrilateral whose vertices are A(2,2), B(2,$-$2), C(0,$-$1) and D(0,1).
+\begin{abstract}
+This document contains the solution to problem 5 (c) asked on the ICSE Class 10 Mathematics Paper in 2018.
+\end{abstract}
+
+\noindent \textbf{Problem 5. (c)}
+Use graph paper for this question (Take 2 cm = 1 unit along both x and y axis). ABCD is a quadrilateral whose vertices are A(2,2), B(2,$-$2), C(0,$-$1) and D(0,1).
 \begin{enumerate}[label=(\roman{enumi})]
-\item Reflect quadrilateral ABCD on the \textit{y}-axis and name it as A\textquotesingle B\textquotesingle CD.
+\item Reflect quadrilateral ABCD on the $y$-axis and name it as A\textquotesingle B\textquotesingle CD.
 \item Write down the coordinates of A{\textquotesingle} and B\textquotesingle .
 \item Name two points which are invariant under the above reflection.
 \item Name the polygon A\textquotesingle B\textquotesingle CD.
 \end{enumerate}
-\end{problem}
 
 \solution 
 \begin{enumerate}[label=(\roman{enumi})]
 \item The plot of quadrilateral ABCD after reflection on the \textit{y}-axis is as shown:
-\begin{figure}[h]
+\begin{figure}[htb!]
 \centering
 \includegraphics[width = \columnwidth]{./figs/5.3.1.png}
 \caption{Plot of points A, B, C, D and their reflections in the y-axis.}
 \end{figure}
-\item The coordinates of A{\textquotesingle} and B{\textquotesingle} are ($-$2,2) and ($-$2,$-$2) respectively.
+\item We represent the co-ordinates of points A, B, C, and D as column vectors to find their reflections. Note that the reflection matrix for the given situation is 
+\begin{align}
+\label{eq:refln}
+\vec{R} = \myvec{-1 & 0 \\ 0 & 1}
+\end{align}
+$\therefore$
+\begin{align}
+\vec{A\textquotesingle} = \vec{R}\vec{A} = \myvec{-1 & 0 \\ 0 & 1}\myvec{2 \\ 2} = \myvec{-2 \\ 2}, \\
+\vec{B\textquotesingle} = \vec{R}\vec{B} = \myvec{-1 & 0 \\ 0 & 1}\myvec{2 \\ -2} = \myvec{-2 \\ -2}, \\
+\vec{C\textquotesingle} = \vec{R}\vec{C} = \myvec{-1 & 0 \\ 0 & 1}\myvec{0 \\ -1} = \myvec{0 \\ -1}, \\
+\vec{D\textquotesingle} = \vec{R}\vec{D} = \myvec{-1 & 0 \\ 0 & 1}\myvec{0 \\ 1} = \myvec{0 \\ 1}. 
+\label{eq:sol}
+\end{align}
+The coordinates of A{\textquotesingle} and B{\textquotesingle} are ($-$2,2) and ($-$2,$-$2) respectively.
 \item The two points which are invariant under reflection are C(0,$-$1) and D(0,1).
 \item The polygon A\textquotesingle B\textquotesingle CD is an isosceles trapezium.
 \end{enumerate}
