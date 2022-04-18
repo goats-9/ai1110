@@ -163,19 +163,12 @@ Head: 455, Tail: 545.
 Compute the probability for each event.
 \end{problem}
 
-\solution Let us denote the event of getting a head by E and getting a tail by F. Given,
-\begin{enumerate}
-\item The total number of trials, $N = 1000$.
-\item The total number of occurrences of event E, $N_{e} = 455$.
-\item The total number of occurrences of event F, $N_{f} = 545$.
-\end{enumerate}
-
-$\therefore$
+\solution Denote the outcome of the experiment by a random variable $X\in \cbrak{0, 1}$, where $X = 0$ denotes occurrence of heads and $X = 1$ denotes occurrence of tails. Then,
 \begin{align}
-\pr{E} = \frac{N_{e}}{N} = \frac{455}{1000} = 0.455 \\
-\pr{F} = \frac{N_{f}}{N} = \frac{545}{1000} = 0.545
+\pr{X = 0} = \frac{455}{1000} = 0.455 \\
+\pr{X = 1} = \frac{545}{1000} = 0.545
 \label{sol}
 \end{align}
 
-One can also verify that since these events are mutually exclusive and exhaustive, we get $\pr{E} + \pr{F} = 0.455 + 0.545 = 1$. The C code \texttt{./codes/4{\_}1.c} computes and verifies the solution.
+One can also verify that since these events are mutually exclusive and exhaustive, we get $\pr{X = 0} + \pr{X = 1} = 0.455 + 0.545 = 1$. The Python code \texttt{./codes/4{\_}1.py} simulates the given experiment, comparing the practical probabilities to the theoretical probabilities.
 \end{document}
