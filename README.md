@@ -13,15 +13,17 @@
 
 **Instructor**: Dr. G. V. V. Sharma
 
-# Course Manuals:
+# Course Manuals
 
-## <img src="https://render.githubusercontent.com/render/math?math=\LaTeX">
+Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free and open source.
 
-[**LaTex Template**](https://github.com/gadepall/AI5030/tree/main/LaTex_Template): IEEETran, twocolumn format
+## LaTeX Templates
+
+[**LaTeX Template**](https://github.com/gadepall/AI5030/tree/main/LaTex_Template): IEEETran, twocolumn format
 
 [**Using LaTeX**](https://github.com/gadepall/cbse-papers/tree/main/2020/math): Use of macros in typing solutions
 
-**Programming Scripts** (Multiple sources): Many thanks to Dr. G. V. V. Sharma for making the program scripts free and open source.
+## Programming Scripts
 
 [Coordinate Geometry in Python](https://github.com/gadepall/cbse-papers/tree/main/CoordGeo)
 
