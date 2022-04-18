@@ -19,9 +19,9 @@ Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free a
 
 ## LaTeX Templates
 
-[**LaTeX Template**](https://github.com/gadepall/AI5030/tree/main/LaTex_Template): IEEETran, twocolumn format
+[**LaTeX Template**](https://github.com/gadepall/AI5030/tree/main/LaTex_Template)
 
-[**Using LaTeX**](https://github.com/gadepall/cbse-papers/tree/main/2020/math): Use of macros in typing solutions
+[**Using LaTeX**](https://github.com/gadepall/cbse-papers/tree/main/2020/math)
 
 ## Programming Scripts
 
