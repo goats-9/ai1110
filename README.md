@@ -15,6 +15,8 @@
 
 # Course Manuals:
 
+## <img src="https://render.githubusercontent.com/render/math?math=\LaTeX">
+
 [**LaTex Template**](https://github.com/gadepall/AI5030/tree/main/LaTex_Template): IEEETran, twocolumn format
 
 [**Using LaTeX**](https://github.com/gadepall/cbse-papers/tree/main/2020/math): Use of macros in typing solutions
