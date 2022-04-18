@@ -19,15 +19,15 @@ Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free a
 
 ## LaTeX Templates
 
-[**LaTeX Template**](https://github.com/gadepall/AI5030/tree/main/LaTex_Template)
+1. [LaTeX Template](https://github.com/gadepall/AI5030/tree/main/LaTex_Template)
 
-[**Using LaTeX**](https://github.com/gadepall/cbse-papers/tree/main/2020/math)
+2. [Using LaTeX](https://github.com/gadepall/cbse-papers/tree/main/2020/math)
 
 ## Programming Scripts
 
-[Coordinate Geometry in Python](https://github.com/gadepall/cbse-papers/tree/main/CoordGeo)
+1. [Coordinate Geometry in Python](https://github.com/gadepall/cbse-papers/tree/main/CoordGeo)
 
-[Importing data into Python from C](https://github.com/gadepall/EE1083/tree/master/pythonc)
+2. [Importing data into Python from C](https://github.com/gadepall/EE1083/tree/master/pythonc)
 
 # Question Sources
 
