@@ -15,7 +15,7 @@
 
 # Course Manuals
 
-Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free and open source.
+Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free and open source for use. It is greatly appreciated.
 
 ## LaTeX Templates
 
