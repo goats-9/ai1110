@@ -35,6 +35,8 @@ Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free a
 
 [Assignment 2](https://github.com/gadepall/papers/blob/master/icse/math/12/2018/860%20MATHEMATICS%20QP.pdf): Question 1 (iii)
 
-[Assignment 3](https://github.com/gadepall/ncert-textbooks/blob/main/math/9/iemh114.pdf): Example 1 (_PDF does not load_)
+[Assignment 3](https://github.com/gadepall/ncert-textbooks/blob/main/math/9/iemh114.pdf): Example 1 
 
-[Assignment 4](https://github.com/gadepall/ncert-textbooks/blob/main/math/9/iemh115.pdf): Example 1 (_PDF does not laad_)
+[Assignment 4](https://github.com/gadepall/ncert-textbooks/blob/main/math/9/iemh115.pdf): Example 1 
+
+[Assignment 4](https://github.com/gadepall/ncert-textbooks/blob/main/math/9/iemh115.pdf): Exercise 15.1, Question 2
