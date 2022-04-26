@@ -163,21 +163,20 @@ This document contains the solution to Example 3 of Chapter 15 (Probability) in 
 \item What is the probability of getting a number less than or equal to 4?
 \end{enumerate}
 
-\solution Let the random variable $X$ denote the number that appears on rolling the die. Then, we see that the sample space is $S = \cbrak{1, 2, 3, 4, 5, 6}$. From the probability mass function (PMF) below, 
+\solution Let the random variable $X$ denote the number that appears on rolling the die. Then, we see that the sample space is $S = \cbrak{1, 2, 3, 4, 5, 6}$. Therefore, from \autoref{fig:pmf-cdf}, 
 
 \begin{align}
-\pr{X > 4} = \frac{2}{6} = \frac{1}{3} \\
-\pr{X \leq 4} = \frac{4}{6} = \frac{2}{3} 
+\pr{X \leq 4} &= \frac{4}{6} = \frac{2}{3}  \\
+\pr{X > 4} &= 1 - \pr{X \leq 4} \\
+&= 1 - \frac{4}{6} = \frac{1}{3} 
 \label{sol}
 \end{align}
 
-The Python code \texttt{codes/6{\_}1.py} creates the plot of the given PMF.
-
-
 \begin{figure}[!ht]
+\centering
 \includegraphics[width=\columnwidth]{figs/6_1.png}
-\caption{Plot of the PMF of an unbiased die.}
-\label{fig}
+\caption{Plot of the PMF (left) and CDF (right) of an unbiased die. Code: \texttt{codes/6{\_}1.py}}
+\label{fig:pmf-cdf}
 \end{figure}
 
 \end{document}
