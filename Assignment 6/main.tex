@@ -100,6 +100,7 @@ columns=fullflexible
 %\bibliographystyle{ieeetr}
 \providecommand{\mbf}{\mathbf}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cdf}[2]{\ensuremath{F_{#1}\left(#2\right)}}
 \providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
 \providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
 \providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
@@ -148,7 +149,7 @@ columns=fullflexible
      \def\centbox#1{\makebox[0in]{#1}}
      \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
      \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
-\title{Assignment 5 (NCERT Class 10 Probability)}
+\title{Assignment 6 (NCERT Class 10 Probability)}
 \author{Gautam Singh (CS21BTECH11018)}	
 \maketitle
 
@@ -163,12 +164,19 @@ This document contains the solution to Example 3 of Chapter 15 (Probability) in 
 \item What is the probability of getting a number less than or equal to 4?
 \end{enumerate}
 
-\solution Let the random variable $X$ denote the number that appears on rolling the die. Then, we see that the sample space is $S = \cbrak{1, 2, 3, 4, 5, 6}$. Therefore, from \autoref{fig:pmf-cdf}, 
+\solution Let the random variable $X$ denote the number that appears on rolling the die. Then, we see that the sample space is $S = \cbrak{1, 2, 3, 4, 5, 6}$. The CDF can be derived from the PMF as follows:
 
 \begin{align}
-\pr{X \leq 4} &= \frac{4}{6} = \frac{2}{3}  \\
-\pr{X > 4} &= 1 - \pr{X \leq 4} \\
-&= 1 - \frac{4}{6} = \frac{1}{3} 
+\cdf{X}{k} = \sum_{i = 1}^{i = k}\pr{X = i} = k \times \frac{1}{6} = \frac{k}{6}
+\label{cdf}
+\end{align}
+
+\noindent Hence, using \autoref{fig:pmf-cdf},
+
+\begin{align}
+\pr{X \leq 4} &= \cdf{X}{4} = \frac{4}{6} = \frac{2}{3}  \\
+\implies \pr{X > 4} &= 1 - \cdf{X}{4} \\
+&= 1 - \frac{2}{3} = \frac{1}{3} 
 \label{sol}
 \end{align}
 
