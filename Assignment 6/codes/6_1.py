@@ -39,11 +39,7 @@ stem(X, Y, linefmt='k-', markerfmt='ko', basefmt='k-')
 
 #Plotting the CDF
 plt.subplot(1, 2, 2)
-plt.plot(X, Z, 'k.')
-plt.plot(X[1:], Z[0:5], 'k.', fillstyle='none')
-A = np.column_stack((X[:5], Z[:5]))
-B = np.column_stack((X[1:], Z[:5]))
-batch_plot(A, B)
+stem(X, Z, linefmt='k-', markerfmt='ko', basefmt='k-')
 plt.xlabel('Value of X')
 plt.ylabel('Cumulative Probability')
 plt.xticks(X)
