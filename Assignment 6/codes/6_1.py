@@ -48,5 +48,5 @@ plt.xlabel('Value of X')
 plt.ylabel('Cumulative Probability')
 plt.xticks(X)
 plt.grid()
-plt.tight_layout() #Spaace the subplots properly
+plt.tight_layout() #Space the subplots properly
 plt.savefig('../figs/6_1.png')
