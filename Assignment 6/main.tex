@@ -164,12 +164,35 @@ This document contains the solution to Example 3 of Chapter 15 (Probability) in 
 \item What is the probability of getting a number less than or equal to 4?
 \end{enumerate}
 
-\solution Let the random variable $X$ denote the number that appears on rolling the die. Then, we see that the sample space is $S = \cbrak{1, 2, 3, 4, 5, 6}$. The CDF can be derived from the PMF as follows:
+\solution Let the random variable $X$ denote the number that appears on rolling the die. Then, we see that the sample space is $S = \cbrak{1, 2, 3, 4, 5, 6}$. The PMF is given by
+
+\begin{equation}
+\pr{X = k} = 
+\begin{cases}
+\frac{1}{6}, & 1 \geq k \geq 6 \\
+0, & \text{otherwise} 
+\end{cases}
+\label{pmf}
+\end{equation}
+
+\noindent The CDF can be derived from the PMF as follows:
 
 \begin{align}
-\cdf{X}{k} = \sum_{i = 1}^{i = k}\pr{X = i} = k \times \frac{1}{6} = \frac{k}{6}
-\label{cdf}
+\cdf{X}{k} = \pr{X \leq k}  &= \sum_{i = 1}^{i = k}\pr{X = i} = \frac{k}{6}
+\label{eqn:cdf}
 \end{align}
+
+\noindent Therefore, the CDF is explicitly given by
+
+\begin{equation}
+\cdf{X}{k} = 
+\begin{cases}
+0, & k < 1 \\
+\frac{k}{6}, & 1 \leq k \leq 6 \\
+1, & k > 6
+\end{cases}
+\label{cdf}
+\end{equation}
 
 \noindent Hence, using \autoref{fig:pmf-cdf},
 
