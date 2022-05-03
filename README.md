@@ -11,11 +11,11 @@
 
 **Semester and Year**: Second Semester, 2022.
 
-**Instructor**: Dr. G. V. V. Sharma
+**Instructor**: [Dr. G. V. V. Sharma](https://github.com/gadepall)
 
 # Course Manuals
 
-Many thanks to [Dr. G. V. V. Sharma](https://github.com/gadepall) for making these scripts and templates free and open source for use. It is greatly appreciated.
+Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free and open source for use. It is greatly appreciated.
 
 ## LaTeX Templates
 
