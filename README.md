@@ -9,7 +9,7 @@
 
 **University**: Indian Institute of Technology, Hyderabad (IITH)
 
-**Semester and Year**: Second Semester, 2022.
+**Semester and Year**: Second Semester, Mar-Jul 2022.
 
 **Instructor**: [Dr. G. V. V. Sharma](https://github.com/gadepall)
 
