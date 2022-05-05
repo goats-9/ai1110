@@ -192,4 +192,17 @@ and
 
 \noindent The C code \texttt{./codes/7{\_}1.c} verifies the solution, within limits of float precision.
 
+\noindent \textbf{Note:} Derivation of \eqref{eq:union} using Boolean Algebra:
+\begin{align}
+LHS = A \vee B &= \neg(\neg A \wedge \neg B) \\
+&= 1 - (1 - A)(1 - B) \\
+&= A + B - AB = RHS
+\label{derive}
+\end{align}
+The following identities were used:
+\begin{align}
+\text{(De-Morgan's Law) }&\neg(A \vee B) = \neg A \wedge \neg B \\
+&\neg A = 1 - A \\
+&A \wedge B = AB 
+\end{align}
 \end{document}
