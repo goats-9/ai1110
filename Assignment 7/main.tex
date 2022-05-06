@@ -197,12 +197,12 @@ Using \eqref{defn} and \eqref{eq:union}, we get
 \end{align}
 From \eqref{eq:conditional} and \eqref{sol:1},
 \begin{align}
-\pr{X = 0|Y = 0} = \frac{\pr{X = 0, Y = 0}}{\pr{Y = 0}} = \frac{4}{5} 
+\pr{X = 0|Y = 0} = \frac{\pr{(X = 0)(Y = 0)}}{\pr{Y = 0}} = \frac{4}{5} 
 \label{sol:2} 
 \end{align}
 and
 \begin{align}
-\pr{X = 0|Y = 0} = \frac{\pr{X = 0, Y = 0}}{\pr{X = 0}}  = \frac{2}{3}
+\pr{X = 0|Y = 0} = \frac{\pr{(X = 0)(Y = 0)}}{\pr{X = 0}}  = \frac{2}{3}
 \label{sol:3}
 \end{align}
 
@@ -210,15 +210,15 @@ and
 
 \noindent \textbf{Note:} Derivation of \eqref{eq:union} using Boolean Algebra:
 \begin{align}
-LHS = A \vee B &= \neg(\neg A \wedge \neg B) \\
+LHS = A \vee B &= (A' \wedge B')' \\
 &= 1 - (1 - A)(1 - B) \\
 &= A + B - AB = RHS
 \label{derive}
 \end{align}
 The following identities were used:
 \begin{align}
-\text{(De-Morgan's Law) }&\neg(A \vee B) = \neg A \wedge \neg B \\
-&\neg A = 1 - A \\
+\text{(De-Morgan's Law) }&(A \vee B)' = A' \wedge B' \\
+&A' = 1 - A \\
 &A \wedge B = AB 
 \end{align}
 \end{document}
