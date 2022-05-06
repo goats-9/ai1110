@@ -164,7 +164,23 @@ This document contains the solution to Question 5 of Exercise 13.1 in Chapter 13
 \item $\pr{B|A}$
 \end{enumerate}
 
-\solution We know that, given events A and B,
+\solution Define the random variables $X$ and $Y$ as follows:
+
+\begin{align}
+X = 
+\begin{cases}
+0, & \text{event A occurs} \\
+1, & \text{otherwise} \\
+\end{cases} \\
+Y = 
+\begin{cases}
+0, & \text{event B occurs} \\
+1, & \text{otherwise} \\
+\end{cases}
+\label{defn}
+\end{align}
+
+We know that, given events A and B,
 \begin{align}
 \pr{AB} = \pr{A} + \pr{B} - \pr{A + B}
 \label{eq:union}
@@ -174,19 +190,19 @@ and also,
 \pr{A|B} = \frac{\pr{AB}}{\pr{B}}
 \label{eq:conditional}
 \end{align}
-Using \eqref{eq:union}, we get 
+Using \eqref{defn} and \eqref{eq:union}, we get 
 \begin{align}
-\pr{AB} = \frac{6}{11} + \frac{5}{11} - \frac{7}{11} = \frac{4}{11}
+\pr{X = 0, Y = 0} = \frac{6}{11} + \frac{5}{11} - \frac{7}{11} = \frac{4}{11}
 \label{sol:1}
 \end{align}
 From \eqref{eq:conditional} and \eqref{sol:1},
 \begin{align}
-\pr{A|B} = \frac{\pr{AB}}{\pr{B}} = \frac{4}{5} 
+\pr{X = 0|Y = 0} = \frac{\pr{X = 0, Y = 0}}{\pr{Y = 0}} = \frac{4}{5} 
 \label{sol:2} 
 \end{align}
 and
 \begin{align}
-\pr{B|A} = \frac{\pr{AB}}{\pr{A}}  = \frac{2}{3}
+\pr{X = 0|Y = 0} = \frac{\pr{X = 0, Y = 0}}{\pr{X = 0}}  = \frac{2}{3}
 \label{sol:3}
 \end{align}
 
