@@ -193,16 +193,17 @@ and
 \noindent The C code \texttt{./codes/7{\_}1.c} verifies the solution, within limits of float precision.
 
 \noindent \textbf{Note:} Derivation of \eqref{eq:union} using Boolean Algebra:
+
+\noindent We note that for any events A and B we have the following:
 \begin{align}
-LHS = A \vee B &= (A'B')' \\
-&= 1 - (1 - A)(1 - B) \\
-&= A + B - AB = RHS
-\label{derive}
+A + B = AB + AB' + A'B \label{eq:id1} \\
+\pr{A} = \pr{AB'} + \pr{AB} \label{eq:id2}
 \end{align}
-The following identities were used:
+and so, taking probabilities in \eqref{eq:id1}, since all the events are mutually disjoint,
 \begin{align}
-\text{(De-Morgan's Law) }&(A \vee B)' = A'B' \\
-&A' = 1 - A \\
-&A \wedge B = AB 
+\pr{A + B} &= \pr{AB'} + \pr{AB} + \pr{A'B} \\
+&= \pr{A} + \pr{B} - \pr{AB} \\
+&= \pr{A} + \pr{B} - \pr{AB}
+\label{eq:derive}
 \end{align}
 \end{document}
