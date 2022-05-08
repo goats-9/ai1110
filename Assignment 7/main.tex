@@ -196,10 +196,17 @@ and
 
 \noindent We note that for any events A and B we have the following:
 \begin{align}
-A + B = AB + AB' + A'B \label{eq:id1} \\
-\pr{A} = \pr{AB'} + \pr{AB} \label{eq:id2}
+A + B &= A(B + B') + B(A + A') \\
+&= (AB + BA) + AB' + A'B \\
+&= AB + AB' + A'B
+\label{eq:id1}
 \end{align}
-and so, taking probabilities in \eqref{eq:id1}, since all the events are mutually disjoint,
+and
+\begin{align}
+\pr{A} &= \pr{AB'} + \pr{AB} 
+\label{eq:id2}
+\end{align}
+Thus, taking probabilities in \eqref{eq:id1}, since all the events are mutually disjoint,
 \begin{align}
 \pr{A + B} &= \pr{AB'} + \pr{AB} + \pr{A'B} \\
 &= \pr{A} + \pr{B} - \pr{AB} \\
