@@ -170,28 +170,40 @@ This document contains the solution to Question 16 of Exercise 13.2 in Chapter 1
 \pr{E} = 0.4 \\
 \pr{F} = 0.6 \\
 \pr{EF} = 0.2
+\label{given}
 \end{align}
 
 \noindent For any event X, we may write,
 
 \begin{align}
 \pr{X'} = 1 - \pr{X}
+\label{comp}
 \end{align}
 
-\noindent So, using De-Morgan's Laws, 
+\begin{enumerate}[label = (\alph{enumi})]
+
+\item Using De-Morgan's Laws, we need to get $\pr{E' + F'}$. Thus,
 
 \begin{align}
 \pr{E' + F'} &= \pr{(EF)'} \\
 &= 1 - \pr{EF} \\
 &= 1 - 0.2 = \frac{4}{5}
+\label{sol:(a)}
 \end{align}
 
-\noindent We also have the following:
+\item We require $\pr{E|F}$. Hence,
 
 \begin{align}
-\pr{E|F} = \frac{\pr{EF}}{\pr{F}} = \frac{0.2}{0.6} = \frac{1}{3} \\
-\pr{F|E} = \frac{\pr{EF}}{\pr{E}} = \frac{0.2}{0.4} = \frac{1}{2}
+\pr{E|F} = \frac{\pr{EF}}{\pr{F}} = \frac{0.2}{0.6} = \frac{1}{3} 
+\label{sol:(b)}
 \end{align}
 
+\item We need to find $\pr{F|E}$. Therefore,
+\begin{align}
+\pr{F|E} = \frac{\pr{EF}}{\pr{E}} = \frac{0.2}{0.4} = \frac{1}{2} 
+\label{sol:(c)}
+\end{align}
+
+\end{enumerate}
 \noindent The answers are verified in \texttt{codes/8{\_}1.c}.
 \end{document}
