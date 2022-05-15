@@ -20,8 +20,8 @@ Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free a
 ## LaTeX Templates
 
 1. [LaTeX Template](https://github.com/gadepall/AI5030/tree/main/LaTex_Template)
-
-2. [Math Manuals in LaTeX](https://github.com/gadepall/cbse-papers/tree/main/2020/math)
+2. [LaTeX-Beamer Presentation Template](https://piazza.com/redirect/s3?bucket=uploads&prefix=paste%2Fksb9licd76n6pc%2F40651603067ae708afac1ab1067479899f0aba606acdd286cae0b22a8ce6edc3%2Fsample.tex)
+3. [Math Manuals in LaTeX](https://github.com/gadepall/cbse-papers/tree/main/2020/math)
 
 ## Programming Scripts
 
