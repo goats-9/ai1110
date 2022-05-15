@@ -1,0 +1,119 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+
+% Theme choice:
+\usetheme{CambridgeUS}
+
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+
+% Title page details: 
+\title{Assignment 8} 
+\author{Gautam Singh (CS21BTECH11018)}
+\date{\today}
+\logo{\large \LaTeX{}}
+
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+% Remove logo from the next slides
+\logo{}
+
+
+% Outline frame
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+% Lists frame
+\section{Problem}
+\begin{frame}{Problem Statement}
+
+\textbf{(NCERT Class 12, Exercise 13.2.16 )} In a hostel, 60\% of the students read Hindi newspaper, 40\% read English newspaper and 20\% read both Hindi and English newspapers. A student is selected at random.
+
+\begin{enumerate}[label=(\alph{enumi})]
+	\item Find the probability that she reads neither Hindi nor English newspapers.
+	\item If she reads Hindi newspaper, find the probability that she reads English newspaper.
+	\item If she reads English newspaper, find the probability that she reads Hindi newspaper.
+\end{enumerate}
+
+\end{frame}
+
+
+% Blocks frame
+\section{Solution}
+\begin{frame}{Solution}
+    \begin{block}{Events}
+        \begin{enumerate}
+        		\item E: Student reads English newspaper
+        		\item F: Student reads Hindi newspaper
+        \end{enumerate}
+    \end{block}
+    \begin{block}{Given}
+		\begin{enumerate}
+			\item $\pr{E} = 0.4$
+			\item $\pr{F} = 0.6$
+			\item $\pr{EF} = 0.2$
+			\label{given}	
+		\end{enumerate}		    
+    \end{block}
+    \begin{alertblock}{To find}
+    		\begin{enumerate}
+    			\item $\pr{E' + F'}$
+    			\item $\pr{E|F}$
+    			\item $\pr{F|E}$
+    		\end{enumerate}
+    \end{alertblock}
+\end{frame} 
+
+\begin{frame}
+	\begin{block}{1. $\pr{E' + F'}$}
+		Using De-Morgan's Laws,
+		\begin{align}
+			\pr{E' + F'} &= \pr{(EF)'} \\
+			&= 1 - \pr{EF} \\
+			&= 1 - 0.2 = \frac{4}{5}
+			\label{sol1}		
+		\end{align}
+	\end{block}
+	\begin{block}{2. $\pr{E|F}$}
+		\begin{align}
+			\pr{E|F} &= \frac{\pr{EF}}{\pr{F}} \\
+			&= \frac{0.2}{0.6} = \frac{1}{3}
+			\label{sol2}		
+		\end{align}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{3. $\pr{F|E}$}
+		\begin{align}
+			\pr{F|E} &= \frac{\pr{EF}}{\pr{E}} \\
+			&= \frac{0.2}{0.4} = \frac{1}{2}
+			\label{sol3}
+		\end{align}
+	\end{block}
+	\begin{alertblock}{Answers}
+    		\begin{enumerate}
+    			\item $\pr{E' + F'} = \frac{4}{5}$
+    			\item $\pr{E|F} = \frac{1}{3}$
+    			\item $\pr{F|E} = \frac{1}{2}$
+    		\end{enumerate}
+    \end{alertblock}
+\end{frame}
+
+\end{document}
