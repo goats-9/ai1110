@@ -26,7 +26,6 @@ Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free a
 ## Programming Scripts
 
 1. [Coordinate Geometry in Python](https://github.com/gadepall/cbse-papers/tree/main/CoordGeo)
-
 2. [Importing data into Python from C](https://github.com/gadepall/EE1083/tree/master/pythonc)
 
 # Question Sources
