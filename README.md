@@ -43,3 +43,8 @@ Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free a
 [Assignment 6](https://github.com/gadepall/ncert-textbooks/blob/main/math/10/jemh115.pdf): Example 3
 
 [Assignment 7](https://github.com/gadepall/ncert-textbooks/blob/main/math/12-2/lemh207.pdf): Exercise 13.1, Question 5
+
+[Assignment 8](https://github.com/gadepall/ncert-textbooks/blob/main/math/12-2/lemh207.pdf): Exercise 13.2, Question 16
+
+[Assignment 9](https://github.com/gadepall/ncert-textbooks/blob/main/math/12-2/lemh207.pdf): Exercise 13.5, Question 3
+
