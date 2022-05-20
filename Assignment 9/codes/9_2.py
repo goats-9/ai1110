@@ -2,7 +2,7 @@
 #May 20, 2022
 #License
 #https://www.gnu.org/licenses/gpl-3.0.en.html
-#Create a PMF and CDF subplot for a single die roll
+#Simulate binomial trials to find the CDF
 
 import numpy as np
 import matplotlib.pyplot as plt
