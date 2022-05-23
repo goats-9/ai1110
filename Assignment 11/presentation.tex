@@ -58,14 +58,19 @@ of heads is even equals $0.5[1 + (q - p)^n]$.
             \implies \pr{Y \equiv 0\ (\textrm{mod } 2)} &= \binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots
         \end{align}
     \end{alertblock}
+	We have, 
+	\begin{align}
+		\pr{Y \equiv 0\ (\textrm{mod } 2)} &= \binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots \\ 
+		&= \frac{1}{2}(2(\binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots))
+	\end{align}
 \end{frame}
 
 \begin{frame}
-    We have, 
     \begin{align}
-        \pr{Y \equiv 0\ (\textrm{mod } 2)} &= \binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots \\ 
-		&= \frac{1}{2}(2(\binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots)) \\
-		&= 0.5[\sum_{k = 0}^{k = n}\binom{n}{k}q^{(n - k)}p^k + \sum_{k = 0}^{k = n}\binom{n}{k}(-1)^kq^{(n - k)}p^k] \\
+		&= 0.5\bigg[ \bigg(\binom{n}{0}p^n + \binom{n}{1}p^{(n - 1)}q + \ldots\bigg) \nonumber \\
+		&+\bigg( \binom{n}{0}p^n - \binom{n}{1}p^{(n - 1)}q + \ldots \bigg) \bigg] \\
+		&= 0.5\bigg[ \sum_{k = 0}^{k = n}\binom{n}{k}q^{(n - k)}p^k \nonumber \\
+		&+ \sum_{k = 0}^{k = n}\binom{n}{k}(-1)^kq^{(n - k)}p^k \bigg] \\
 		&= 0.5[(q + p)^n + (q - p)^n] \\
 		&= 0.5[1 + (q - p)^n]
         \label{eq:proof}
