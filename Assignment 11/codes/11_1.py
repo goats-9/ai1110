@@ -2,33 +2,30 @@
 #May 23, 2022
 #License
 #https://www.gnu.org/licenses/gpl-3.0.en.html
-#Verify an identity of n-component Boolean Algebra
-#Using Bernoulli Trials
+#Verify an identity on n Bernoulli Trials
 
-from ctypes import sizeof
-import time
 import numpy as np
-import itertools as it
-import scipy.special as sp
-
-#Sample size (3 for simplicity)
-n = 3
+from scipy.stats import binom
+from scipy import ndimage as nd
 
 #Randomly generate the parameters
+n = np.random.randint(1, 10)
 p = np.random.random()
-q = 1 - p
 
-#Generate the outcome of the experiment
-A = np.random.randint(0, 2, n)
+#Get pmf of distribution
+r = np.arange(n + 1)
+A = binom.pmf(r, n, p)
 
-lhs = rhs = 1
-#Manual calculations
-lhs *= (p if A[0] == 1 else q)
-lhs *= (p if A[1] == 1 else q)
-lhs *= (p if A[2] == 1 else q)
+#Label odd and even indices
+L = np.empty(n + 1)
+L[1::2] = 2
+L[::2] = 1
 
-#Using the identity
-rhs = (p**(np.count_nonzero(np.where(A == 1, 1, 0))))*(q**(np.count_nonzero(np.where(A == 0, 1, 0))))
+#Sum required indices
+lhs = nd.sum(A, L, 1)
 
-if (lhs == rhs): 
-    print("The identity is verified.\nProbability of occurence in this simulation =", rhs)
+#Use the formula
+rhs = 0.5*(1 + (1 - 2*p)**n)
+
+if (abs(lhs - rhs) < 1e-6):
+    print("The identity is verified.\nProbability of the event in this simulation =", round(rhs, 6))

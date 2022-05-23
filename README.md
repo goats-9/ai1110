@@ -48,6 +48,8 @@ Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free a
 
 [Assignment 9](https://github.com/gadepall/ncert-textbooks/blob/main/math/12-2/lemh207.pdf): Exercise 13.5, Question 3
 
-[Assignment 10](https://github.com/goats-9/ai1110-assignments/blob/main/assets/papoulis.pdf): Chpater 2, Exercise 26
+[Assignment 10](https://github.com/goats-9/ai1110-assignments/blob/main/assets/papoulis.pdf): Exercise 2-26
 
-[Assignment 11](https://github.com/goats-9/ai1110-assignments/blob/main/assets/papoulis.pdf): Chapter 3, Example 4
+[Assignment 11](https://github.com/goats-9/ai1110-assignments/blob/main/assets/papoulis.pdf): Exercise 3-4
+
+
