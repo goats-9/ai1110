@@ -48,16 +48,6 @@ of heads is even equals $0.5[1 + (q - p)^n]$.
 \section{Solution}
 
 \begin{frame}{Solution}
-    Let $Y \sim$ Bin($n$, $p$) represent the binomial random variable representing the number of heads attained. We note the following binomial expansions:
-    \begin{align}
-        1 = (q + p)^n &= \sum_{k = 0}^{k = n}\binom{n}{k}q^{(n - k)}p^k \\
-        &= \binom{n}{0}q^n + \binom{n}{1}q^{(n - 1)}p + \binom{n}{2}q^{(n - 2)}p^2 + \ldots \label{eq:t1}\\
-        (q - p)^n &= \sum_{k = 0}^{k = n}\binom{n}{k}(-1)^kq^{(n - k)}p^k \\
-        &= \binom{n}{0}q^n - \binom{n}{1}q^{(n - 1)}p + \binom{n}{2}q^{(n - 2)}p^2 + \ldots \label{eq:t2}
-    \end{align}
-\end{frame}
-
-\begin{frame}
     \begin{alertblock}{PMF of Y}
         \begin{align}
             \pr{Y = k} &= 
@@ -68,11 +58,16 @@ of heads is even equals $0.5[1 + (q - p)^n]$.
             \implies \pr{Y \equiv 0\ (\textrm{mod } 2)} &= \binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots
         \end{align}
     \end{alertblock}
-    Therefore, adding \autoref{eq:t1} and \autoref{eq:t2}, we get,
+\end{frame}
+
+\begin{frame}
+    We have, 
     \begin{align}
-        1 + (q - p)^n &= 2(\binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots) \\ 
-        &= 2\pr{Y \equiv 0\ (\textrm{mod } 2)} \\
-        \implies \pr{Y \equiv 0\ (\textrm{mod } 2)} &= 0.5[1 + (q - p)^n]
+        \pr{Y \equiv 0\ (\textrm{mod } 2)} &= \binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots \\ 
+		&= \frac{1}{2}(2(\binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots)) \\
+		&= 0.5[\sum_{k = 0}^{k = n}\binom{n}{k}q^{(n - k)}p^k + \sum_{k = 0}^{k = n}\binom{n}{k}(-1)^kq^{(n - k)}p^k] \\
+		&= 0.5[(q + p)^n + (q - p)^n] \\
+		&= 0.5[1 + (q - p)^n]
         \label{eq:proof}
     \end{align}
     as deisred. This is verified in \texttt{codes/11\_1.py}.
