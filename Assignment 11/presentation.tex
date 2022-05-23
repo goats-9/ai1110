@@ -13,15 +13,14 @@
 % Theme choice:
 \usetheme{CambridgeUS}
 \usepackage{amsmath}
-\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\cdf}[2]{\ensuremath{\text{F}_{#1}\left(#2\right)}}
+\providecommand{\pri}[2]{\ensuremath{\text{Pr}_{#1}\left(#2\right)}}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 
 % Title page details: 
 \title{Assignment 11} 
 \author{Gautam Singh (CS21BTECH11018)}
 \date{\today}
-\logo{\large \LaTeX{}}
-
 
 \begin{document}
 
@@ -29,10 +28,6 @@
 \begin{frame}
     \titlepage 
 \end{frame}
-
-% Remove logo from the next slides
-\logo{}
-
 
 % Outline frame
 \begin{frame}{Outline}
@@ -44,9 +39,16 @@
 \section{Problem}
 \begin{frame}{Problem Statement}
 
-\textbf{(Papoulis/Pillai Exercise 3-4)} A coin with $\pr{h} = p = 1 - q$ is tossed n times. Show that the probability that the number
-of heads is even equals $0.5[1 + (q - p)^n]$. 
-
+\textbf{(Papoulis/Pillai Example 3-4, Generalised Version)} Given $n$ experiments $S_1, S_2, \ldots, S_n$ we define experiment $S$ as
+\begin{align}
+	S = S_1 \times \ldots \times S_n
+	\label{eq:S-defn}
+\end{align}
+	where events in S are of the form $A_1 \times \ldots \times A_n$ where $A_i \subset S_i$. If the experiments are independent and $\pri{i}{A_i}$ is the probability of the event $A_i$ in experiment $S_i$, then
+\begin{align}
+	\pr{A_1 \times \ldots \times A_n} = \prod_{i = 1}^{i = n}\pri{i}{A_i}
+	\label{eq:identity}
+\end{align}
 \end{frame}
 
 
@@ -54,33 +56,28 @@ of heads is even equals $0.5[1 + (q - p)^n]$.
 \section{Solution}
 
 \begin{frame}{Solution}
-    Let $Y \sim$ Bin($n$, $p$) represent the binomial random variable representing the number of heads attained. We note the following binomial expansions:
-    \begin{align}
-        1 = (q + p)^n &= \sum_{k = 0}^{k = n}\binom{n}{k}q^{(n - k)}p^k \\
-        &= \binom{n}{0}q^n + \binom{n}{1}q^{(n - 1)}p + \binom{n}{2}q^{(n - 2)}p^2 + \ldots \label{eq:t1}\\
-        (q - p)^n &= \sum_{k = 0}^{k = n}\binom{n}{k}(-1)^kq^{(n - k)}p^k \\
-        &= \binom{n}{0}q^n - \binom{n}{1}q^{(n - 1)}p + \binom{n}{2}q^{(n - 2)}p^2 + \ldots \label{eq:t2}
-    \end{align}
+	Note that since all the experiments are independent,
+	\begin{align}
+		\pri{i}{A_i} = \pr{S_1 \times \ldots \times A_i \times \ldots \times S_n} \\
+		\pri{i}{A_i}\pri{j}{A_j} = \pr{A_{i}A_{j}}
+		\label{eq:indep}
+	\end{align}
+	and also, for $n$-component Boolean Algebra,
+	\begin{align}
+		(A_1 \ldots A_n) \times (B_1 \ldots B_n) = (A_1 \times \ldots \times A_n)(B_1 \times \ldots \times B_n) 
+		\label{eq:cartesian}
+	\end{align}
 \end{frame}
 
 \begin{frame}
-    \begin{alertblock}{PMF of Y}
-        \begin{align}
-            \pr{Y = k} &= 
-            \begin{cases}
-                \binom{n}{k}p^{(n - k)}q^k, & 0 \leq k \leq n \\
-                0, & \textrm{otherwise} 
-            \end{cases}  \\
-            \implies \pr{Y \equiv 0\ (\textrm{mod } 2)} &= \binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots
-        \end{align}
-    \end{alertblock}
-    Therefore, adding \autoref{eq:t1} and \autoref{eq:t2}, we get,
-    \begin{align}
-        1 + (q - p)^n &= 2(\binom{n}{0}p^n + \binom{n}{2}p^{(n - 2)}q^2 + \ldots) \\ 
-        &= 2\pr{Y \equiv 0\ (\textrm{mod } 2)} \\
-        \implies \pr{Y \equiv 0\ (\textrm{mod } 2)} &= 0.5[1 + (q - p)^n]
-        \label{eq:proof}
-    \end{align}
-    as deisred. This is verified in \texttt{codes/11\_1.py}.
+	Therefore, since all the $S_i = 1$,
+	\begin{align}
+		\prod_{i = 1}^{i = n}\pri{i}{A_i} &= \prod_{i = 1}^{i = n}\pr{S_1 \times \ldots \times A_i \times \ldots \times S_n} \\
+		&= \pr{(A_1 \times \ldots \times S_n)\ldots(S_1 \times \ldots \times A_n)} \\
+		&= \pr{(A_1S_1)\times(A_2S_2)\times\ldots\times(A_nS_n)} \\
+		&= \pr{A_1 \times \ldots \times A_n}
+		\label{eq:sol}
+	\end{align}
+	as desired.
 \end{frame}
 \end{document}
