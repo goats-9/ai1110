@@ -1,0 +1,112 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inbuilt themes in beamer
+\documentclass{beamer}
+
+% Theme choice:
+\usetheme{CambridgeUS}
+\usepackage{amsmath}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cdf}[2]{\ensuremath{\text{F}_{#1}\left(#2\right)}}
+% Title page details: 
+\title{Assignment 11} 
+\author{Gautam Singh (CS21BTECH11018)}
+\date{\today}
+
+\begin{document}
+
+% Title page frame
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+% Outline frame
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+% Lists frame
+\section{Problem}
+\begin{frame}{Problem Statement}
+
+\textbf{(Papoulis/Pillai Exercise 5-52)}  A box contains $n$ white and $m$ black marbles. Let $X$ represent the number of draws needed for the r$^{th}$ white marble.
+\begin{enumerate}
+	\item If sampling is done with replacement, show that $X$ has a negative binomial distribution with parameters $r$ and $p = \frac{n}{m + n}$.
+	\item If sampling is done without replacement, then show that for $r \leq k \leq m + n$,
+		\begin{align}
+			\pr{X = k} = \binom{k - 1}{r - 1}\frac{\binom{m + n - k}{n - r}}{\binom{m + n}{n}}
+			\label{eq:qn}
+		\end{align}
+	\item For a given $k$ and $r$, show that the probability distribution in \eqref{eq:qn} tends to a negative binomial distribution as $n + m \to \infty$. Thus, for large population size, sampling with or without replacement is the same.
+\end{enumerate}
+\end{frame}
+
+
+% Blocks frame
+\section{Solution}
+
+\begin{frame}{Solution}
+	\begin{enumerate}		
+		\item[1] Suppose $X = k$, $r \leq k \leq m + n$. Then, the $k^{th}$ marble drawn must be white. The other $r - 1$ white marbles can be drawn in any of the previous draws, and we must also have $k - r$ black marbles drawn. Since marbles are drawn with replacement, the probability of drawing a white marble at any instant is given by
+			\begin{align}
+				p = \frac{n}{m + n}
+				\label{eq:p}
+			\end{align}
+			We can now get the PMF of $X$ (here, $q = 1 - p$)
+			\begin{alertblock}{PMF of $X$, With Replacement}
+        		\begin{align}
+					\pr{X = k} =
+					\begin{cases}
+						\binom{k - 1}{r - 1}p^rq^{k - r}, & r \leq k \leq m + n \\
+						0, & \textrm{otherwise}
+					\end{cases}
+					\label{eq:pmf}
+		        \end{align}
+    		\end{alertblock}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\begin{enumerate}
+		\item[2] If sampling is done without replacement, the value of $p$ in \eqref{eq:p} keeps changing with each draw. We then write out the PMF as follows
+			\begin{alertblock}{PMF of $X$, Without Replacement}
+        		For $r \leq k \leq m + n$,
+				\begin{align}
+					\pr{X = k} &= \binom{k - 1}{r - 1}\frac{[n\ldots(n - r + 1)][m\ldots(m - k + r - 1)]}{[(m + n)\ldots(m + n - k + 1)]} \label{eq:c}\\
+					&= \binom{k - 1}{r - 1}\frac{n!}{(n - r)!}\frac{m!}{(m + r - k)!}\frac{(m + n - k)!}{(m + n)!} \\
+					&= \binom{k - 1}{r - 1}\frac{\binom{m + n - k}{n - r}}{\binom{m + n}{n}} \\
+					\label{eq:pmf_norep}
+		        \end{align}
+    		\end{alertblock}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	Therefore, we can write the PMF of $X$ completely as follows
+	\begin{align}
+		\pr{X = k} =
+		\begin{cases}
+			\binom{k - 1}{r - 1}\frac{\binom{m + n - k}{n - r}}{\binom{m + n}{n}}, & r \leq k \leq m + n \\
+			0, & \textrm{otherwise}
+		\end{cases}
+		\label{eq:full-pmf}
+	\end{align}
+	\begin{enumerate}
+		\item[3] Letting $m + n \to \infty$, and using \eqref{eq:p} and \eqref{eq:c},
+			\begin{align}
+				\pr{X = k} &\approx \binom{k - 1}{r - 1}\frac{n^rm^{k - r}}{(m + n)^k} \\
+				&= \binom{k - 1}{r - 1}p^rq^{k - r} \sim NB(r, p)
+				\label{eq:lim}
+			\end{align}
+			as desired.
+	\end{enumerate}
+\end{frame}
+\end{document}
