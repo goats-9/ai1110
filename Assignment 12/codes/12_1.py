@@ -2,30 +2,22 @@
 #May 25, 2022
 #License
 #https://www.gnu.org/licenses/gpl-3.0.en.html
-#Verify an identity on Negative Binomial Distribution
+#Verify a limit on Negative Binomial Distribution
 
 import numpy as np
-from scipy.stats import binom
-from scipy import ndimage as nd
+from scipy.special import binom
 
-#Randomly generate the parameters
-n = np.random.randint(1, 10)
-p = np.random.random()
+#Generate parameters (m/n = 3, p = 1/4)
+N = np.linspace(100, 200, 10)
+p = 1.0/4
+r = 1
+k = 3
+eps = 1e-3
 
-#Get pmf of distribution
-r = np.arange(n + 1)
-A = binom.pmf(r, n, p)
+#Get calculated values for finite m and n
+pr = 1.0*binom(k - 1, r - 1)*(binom(4*N - k, N - r))/(binom(4*N, N))
 
-#Label odd and even indices
-L = np.empty(n + 1)
-L[1::2] = 2
-L[::2] = 1
-
-#Sum required indices
-lhs = nd.sum(A, L, 1)
-
-#Use the formula
-rhs = 0.5*(1 + (1 - 2*p)**n)
-
-if (abs(lhs - rhs) < 1e-6):
-    print("The identity is verified.\nProbability of the event in this simulation =", round(rhs, 6))
+#Get pmf
+pr_conv = np.ones(10)*(binom(k - 1, r - 1))*(p**r)*((1 - p)**(k - r))
+print(abs(pr - pr_conv))
+if (abs(pr[-1] - pr_conv[-1]) < eps): print("Limit is verified")
