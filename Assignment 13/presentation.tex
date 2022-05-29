@@ -32,83 +32,87 @@
     \tableofcontents
 \end{frame}
 
-
-% Lists frame
 \section{Problem}
 \begin{frame}{Problem Statement}
-
-\textbf{(Papoulis/Pillai Exercise 5-52)} The random variable $X$ is $N(0; \sigma^2)$.
-\begin{enumerate}
-	\item Using characteristic functions, show that if $g(x)$ is a function such that $g(x)e^{-x^2/2\sigma^2} \to 0$ as $\left|x\right| \to \infty$, then (Price's theorem)
-		\begin{align}
-			\frac{dE{g(X)}}{dv} = \frac{1}{2}E\left{\frac{d^2g(X)}{dX^2}\right} \tag{v = \sigma^2}
-			\label{eq:price}
-		\end{align}
-	\item The moments $\mu_n$ of $X$ are functions of $v$. Using \eqref{eq:price}, show that 
-		\begin{align}
-			\mu_n(v) = \frac{n(n - 1)}{2}\int_{0}^{v}\mu_{n - 2}(\beta)d\beta
-			\label{eq:moments}
-		\end{align}
-\end{enumerate}
+	\textbf{(Papoulis/Pillai, Exercise 5-48)} The random variable $X$ is $N(0; \sigma^2)$.
+	\begin{enumerate}
+		\item Using characteristic functions, show that if $g(x)$ is a function such that $g(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$, then (Price's Theorem)
+			\begin{align}
+				\frac{dE\{g(X)\}}{dv} = \frac{1}{2}E\left\{\frac{d^2g(X)}{dX^2}\right\}
+				\label{eq:price}
+			\end{align}
+		\item The moments $\mu_n$ of $X$ are functions of $v$. Using \eqref{eq:price}, show that
+			\begin{align}
+				\mu_n(v) = \frac{n(n - 1)}{2}\int_{0}^{v}\mu_{n - 2}(\beta)d\beta
+				\label{eq:moments}
+			\end{align}
+	\end{enumerate}
+	Here, $v = \sigma^2$.
 \end{frame}
 
-% Blocks frame
 \section{Solution}
-
 \begin{frame}{Solution}
-	\begin{enumerate}		
-		\item[1] Suppose $X = k$, $r \leq k \leq m + n$. Then, the $k^{th}$ marble drawn must be white. The other $r - 1$ white marbles can be drawn in any of the previous draws, and we must also have $k - r$ black marbles drawn. Since marbles are drawn with replacement, the probability of drawing a white marble at any instant is given by
-			\begin{align}
-				p = \frac{n}{m + n}
-				\label{eq:p}
-			\end{align}
-			We can now get the PMF of $X$ (here, $q = 1 - p$)
-			\begin{alertblock}{PMF of $X$, With Replacement}
-        		\begin{align}
-					\pr{X = k} =
-					\begin{cases}
-						\binom{k - 1}{r - 1}p^rq^{k - r}, & r \leq k \leq m + n \\
-						0, & \textrm{otherwise}
-					\end{cases}
-					\label{eq:pmf}
-		        \end{align}
-    		\end{alertblock}
-	\end{enumerate}
+	\begin{alertblock}{PMF and Characteristic Function of $X$}
+		Since $X \sim N(\mu; \sigma^2)$, the PMF of $X$ is given by
+		\begin{align}
+			f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{(-\frac{(x - \mu)^2}{2\sigma^2})}
+			\label{eq:gauss-pmf}
+		\end{align}
+		The characteristic function of $X$ is given by
+		\begin{align}
+			\phi_X(\omega) &= E[\exp{(-j\omega X)}] = \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^{-j\omega x}e^{-\frac{(x - \mu)^2}{2\sigma^2}}dx \\
+			&= \exp{(j\mu\omega + \frac{(\sigma j\omega)^2}{2})}\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x - (\mu + \sigma^2 j\omega))^2}{2\sigma^2}}dx \\
+			&= \exp{(j\mu\omega + \frac{(\sigma j\omega)^2}{2})}
+			\label{eq:char}
+		\end{align}
+	\end{alertblock}
 \end{frame}
-
+			
 \begin{frame}
-	\begin{enumerate}
-		\item[2] If sampling is done without replacement, the value of $p$ in \eqref{eq:p} keeps changing with each draw. We then write out the PMF as follows
-			\begin{alertblock}{PMF of $X$, Without Replacement}
-        		For $r \leq k \leq m + n$,
-				\begin{align}
-					\pr{X = k} &= \binom{k - 1}{r - 1}\frac{[n\ldots(n - r + 1)][m\ldots(m - k + r - 1)]}{[(m + n)\ldots(m + n - k + 1)]} \label{eq:c}\\
-					&= \binom{k - 1}{r - 1}\frac{n!}{(n - r)!}\frac{m!}{(m + r - k)!}\frac{(m + n - k)!}{(m + n)!} \\
-					&= \binom{k - 1}{r - 1}\frac{\binom{m + n - k}{n - r}}{\binom{m + n}{n}} \\
-					\label{eq:pmf_norep}
-		        \end{align}
-    		\end{alertblock}
-	\end{enumerate}
-\end{frame}
-
-\begin{frame}
-	Therefore, we can write the PMF of $X$ completely as follows
+	\begin{alertblock}{Inverse Transform of $X$}
+		The inverse transform of $f(x)$ is given by
+		\begin{align}
+			f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\phi_X(\omega)e^{-j\omega x}d\omega
+			\label{eq:inv}
+		\end{align}
+	\end{alertblock}
+	To prove the first part, using \eqref{eq:char} and \eqref{eq:inv}, and noting that $\mu = 0$,
 	\begin{align}
-		\pr{X = k} =
-		\begin{cases}
-			\binom{k - 1}{r - 1}\frac{\binom{m + n - k}{n - r}}{\binom{m + n}{n}}, & r \leq k \leq m + n \\
-			0, & \textrm{otherwise}
-		\end{cases}
-		\label{eq:full-pmf}
+		\frac{dE\{g(X)\}}{dv} &= \frac{d}{dv}\int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\phi_X(\omega)e^{-j\omega x}d\omega\right)dx \\
+		&= \int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\left(\frac{\partial}{\partial v}\phi_X(\omega)\right)e^{-j\omega x}d\omega\right)dx \\
+		&= \int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\left(-\frac{\omega^2}{2}\right)\phi_X(\omega)e^{-j\omega x}d\omega\right)dx \\
+		\label{eq:lhs-diff}
 	\end{align}
-	\begin{enumerate}
-		\item[3] Letting $m + n \to \infty$, and using \eqref{eq:p} and \eqref{eq:c},
-			\begin{align}
-				\pr{X = k} &\approx \binom{k - 1}{r - 1}\frac{n^rm^{k - r}}{(m + n)^k} \\
-				&= \binom{k - 1}{r - 1}p^rq^{k - r} \sim NB(r, p)
-				\label{eq:lim}
-			\end{align}
-			as desired. The limit is verified in \texttt{codes/12{\_}1.py}.
-	\end{enumerate}
 \end{frame}
+
+\begin{frame}
+	We can rewrite \eqref{eq:lhs-diff} using \eqref{eq:inv} as
+	\begin{align}
+		\frac{dE\{g(X)\}}{dv} &= \frac{1}{2}\int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}(-j\omega)^2\phi_X(\omega)e^{-j\omega x}d\omega\right)dx \\
+		&= \int_{-\infty}^{\infty}g(x)\frac{\partial^2f(x)}{\partial x^2}dx
+		\label{eq:rhs-diff}
+	\end{align}
+
+	\noindent We assume that $g^{(k)}(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$ for $k = 0, 1, 2$. Repeatedly integrating \eqref{eq:rhs-diff} by parts gives
+	\begin{align}
+		\frac{dE\{g(X)\}}{dv} &= \frac{1}{2}\int_{-\infty}^{\infty}g\frac{\partial^2f}{\partial x^2}dx \\
+		&= \frac{1}{2}g\frac{\partial f}{\partial x}\Big|_{-\infty}^{\infty} - \int_{-\infty}^{\infty}\frac{\partial g}{\partial x}\frac{\partial f}{\partial x}dx \\
+		&= \frac{1}{2}\int_{-\infty}^{\infty}\frac{\partial^2g}{\partial x^2}fdx - \frac{\partial g}{\partial x}f\Big|_{-\infty}^{\infty} = \frac{1}{2}E\left\{\frac{d^2g(X)}{dX^2}\right\} 
+		\label{eq:sol1}
+	\end{align}
+\end{frame}
+
+\begin{frame}
+	To prove the second part, we begin by observing that $\mu_n = E[X^n]$ and hence it must be a function of $v$. Using \eqref{eq:price},
+	\begin{align}
+		\mu_n'(v) = \frac{1}{2}E\left\{n(n - 1)x^{n - 2}\right\} = \frac{n(n - 1)}{2}\mu_{n - 2}{v}
+		\label{eq:de}
+	\end{align}
+	However, note that if $v = 0$, then from \eqref{eq:gauss-pmf}, $x = 0$ and consequently $\mu_n(0) = 0$. Integrating \eqref{eq:de}, we get
+	\begin{align}
+		\mu_n(v) = \frac{n(n - 1)}{2}\int_{0}^{v}\mu_{n - 2}(\beta)d\beta
+		\label{eq:sol2}
+	\end{align}
+\end{frame}
+
 \end{document}
