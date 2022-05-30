@@ -55,7 +55,7 @@
 	\begin{alertblock}{PMF and Characteristic Function of $X$}
 		Since $X \sim N(\mu; \sigma^2)$, the PMF of $X$ is given by
 		\begin{align}
-			f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{(-\frac{(x - \mu)^2}{2\sigma^2})}
+			f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)}
 			\label{eq:gauss-pmf}
 		\end{align}
 		The characteristic function of $X$ is given by
@@ -75,12 +75,13 @@
 			f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\phi_X(\omega)e^{-j\omega x}d\omega
 			\label{eq:inv}
 		\end{align}
+			Here, $f(x)$ and $\phi_X(\omega)$ form a Fourier transform pair.
 	\end{alertblock}
 	To prove the first part, using \eqref{eq:char} and \eqref{eq:inv}, and noting that $\mu = 0$,
 	\begin{align}
 		\frac{dE\{g(X)\}}{dv} &= \frac{d}{dv}\int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\phi_X(\omega)e^{-j\omega x}d\omega\right)dx \\
 		&= \int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\left(\frac{\partial}{\partial v}\phi_X(\omega)\right)e^{-j\omega x}d\omega\right)dx \\
-		&= \int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\left(-\frac{\omega^2}{2}\right)\phi_X(\omega)e^{-j\omega x}d\omega\right)dx \\
+		&= \int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\left(-\frac{\omega^2}{2}\right)\phi_X(\omega)e^{-j\omega x}d\omega\right)dx
 		\label{eq:lhs-diff}
 	\end{align}
 \end{frame}
@@ -103,12 +104,18 @@
 \end{frame}
 
 \begin{frame}
-	To prove the second part, we begin by observing that $\mu_n = E[X^n]$ and hence it must be a function of $v$. Using \eqref{eq:price},
+	For the second part, observe that $\mu_n = E[X^n]$ and hence it is a function of $v$. Further, using the exponential power series, note that for any positive integer $n$,
+	\begin{align}
+		\exp{\left(\frac{x^2}{2\sigma^2}\right)} &> \frac{x^{2n}}{(2\sigma^2)^nn!} \\
+		\implies 0 < \frac{x^n}{\exp{\left(\frac{x^2}{2\sigma^2}\right)}} &< \frac{(2\sigma^2)^nn!}{x^n}
+		\label{eq:sandwich}
+	\end{align}
+	and using the Sandwich Theorem, we can choose $g(x) = x^n$ to use in \eqref{eq:price}.
 	\begin{align}
 		\mu_n'(v) = \frac{1}{2}E\left\{n(n - 1)x^{n - 2}\right\} = \frac{n(n - 1)}{2}\mu_{n - 2}{(v)}
 		\label{eq:de}
 	\end{align}
-	However, note that if $v = 0$, then from \eqref{eq:gauss-pmf}, $x = 0$ and consequently $\mu_n(0) = 0$. Integrating \eqref{eq:de}, we get
+	However, note that if $v = 0$, then from \eqref{eq:gauss-pmf}, $x = 0$ and consequently $\mu_n(0) = 0$. Integrating \eqref{eq:de} and changing variables, we get
 	\begin{align}
 		\mu_n(v) = \frac{n(n - 1)}{2}\int_{0}^{v}\mu_{n - 2}(\beta)d\beta
 		\label{eq:sol2}
