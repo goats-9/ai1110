@@ -53,3 +53,5 @@ Many thanks to Dr. G. V. V. Sharma for making these scripts and templates free a
 [Assignment 11](https://github.com/goats-9/ai1110-assignments/blob/main/assets/papoulis.pdf): Chapter 3, Exercise 4
 
 [Assignment 12](https://github.com/goats-9/ai1110-assignments/blob/main/assets/papoulis.pdf): Chapter 5, Exercise 52
+
+[Assignment 13](https://github.com/goats-9/ai1110-assignments/blob/main/assets/papoulis.pdf): Chapter 5, Exercise 48
