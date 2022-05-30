@@ -38,7 +38,7 @@
 	\begin{enumerate}
 		\item Using characteristic functions, show that if $g(x)$ is a function such that $g(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$, then (Price's Theorem)
 			\begin{align}
-				\frac{dE\{g(X)\}}{dv} = \frac{1}{2}E\left\{\frac{d^2g(X)}{dX^2}\right\}
+				\frac{dE\{g(X)\}}{dv} = \frac{1}{2}E\left\{\frac{d^2g(X)}{dX^2}\right\} 
 				\label{eq:price}
 			\end{align}
 		\item The moments $\mu_n$ of $X$ are functions of $v$. Using \eqref{eq:price}, show that
@@ -89,7 +89,7 @@
 	We can rewrite \eqref{eq:lhs-diff} using \eqref{eq:inv} as
 	\begin{align}
 		\frac{dE\{g(X)\}}{dv} &= \frac{1}{2}\int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}(-j\omega)^2\phi_X(\omega)e^{-j\omega x}d\omega\right)dx \\
-		&= \int_{-\infty}^{\infty}g(x)\frac{\partial^2f(x)}{\partial x^2}dx
+		&= \frac{1}{2}\int_{-\infty}^{\infty}g(x)\frac{\partial^2f(x)}{\partial x^2}dx
 		\label{eq:rhs-diff}
 	\end{align}
 
@@ -105,7 +105,7 @@
 \begin{frame}
 	To prove the second part, we begin by observing that $\mu_n = E[X^n]$ and hence it must be a function of $v$. Using \eqref{eq:price},
 	\begin{align}
-		\mu_n'(v) = \frac{1}{2}E\left\{n(n - 1)x^{n - 2}\right\} = \frac{n(n - 1)}{2}\mu_{n - 2}{v}
+		\mu_n'(v) = \frac{1}{2}E\left\{n(n - 1)x^{n - 2}\right\} = \frac{n(n - 1)}{2}\mu_{n - 2}{(v)}
 		\label{eq:de}
 	\end{align}
 	However, note that if $v = 0$, then from \eqref{eq:gauss-pmf}, $x = 0$ and consequently $\mu_n(0) = 0$. Integrating \eqref{eq:de}, we get
