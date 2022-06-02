@@ -15,6 +15,7 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 \newcommand\laplace{\ensuremath{\stackrel{\mathclap{\mbox{$\mathcal{L}$}}}{\longleftrightarrow}}}
+\newcommand\laplaceinv{\ensuremath{\stackrel{\mathclap{\mbox{$\mathcal{L}^{-1}$}}}{\longleftrightarrow}}}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\cdf}[2]{\ensuremath{\text{F}_{#1}\left(#2\right)}}
 % Title page details: 
@@ -57,7 +58,7 @@
 	Since $X \sim N(\mu; \sigma^2)$, the PDF of $X$ is given by
 		\begin{align}
 			f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)} \\
-			f(x, v) = \frac{1}{\sqrt{2\pi v}}\exp{\left(-\frac{(x - \mu)^2}{2v}\right)}
+			\implies f(x, v) = \frac{1}{\sqrt{2\pi v}}\exp{\left(-\frac{(x - \mu)^2}{2v}\right)}
 			\label{eq:gauss-pdf}
 		\end{align}
 	Notice that
@@ -90,25 +91,26 @@
 
 \section{Solution}
 \begin{frame}{Solution}
-	In this solution, we assume that $g^{(k)}(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$ for $k = 0, 1, 2$. Applying a Laplace transform, and noting that at $f(x, 0^+) = 0$,
+	In this solution, we assume that $g^{(k)}(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$ for $k = 0, 1, 2$. Applying a Laplace transform, and noting that $f(x, 0^+) = 0$,
 	\begin{align}
-		\frac{dE\{g(X)\}}{dv} &\laplace s\mathcal{L}\{f\} \\
+		\frac{dE\{g(X)\}}{dv} &\laplace s\mathcal{L}\{E\{g(X)\}\} \\
 		&= s\int_{0}^{\infty}e^{-sv}\left(\int_{-\infty}^{\infty}g(x)f(x, v)dx\right)dv \\
 		&= \int_{-\infty}^{\infty}g(x)\left(\int_{0}^{\infty}se^{-sv}f(x, v)dv\right)dx \\
-		&= -\int_{-\infty}^{\infty}g\left(\frac{\partial k}{\partial v}fdv\right)dx \\
-		&= \int_{-\infty}^{\infty}g\left(e^{-sv}\frac{\partial f}{\partial v}dv\right)dx
+		&= -\int_{-\infty}^{\infty}g\left(\int_{0}^{\infty}\frac{\partial k}{\partial v}fdv\right)dx \label{eq:part} \\
+		&= \int_{-\infty}^{\infty}g\left(\int_{0}^{\infty}e^{-sv}\frac{\partial f}{\partial v}dv\right)dx
 		\label{eq:sol1-1}
 	\end{align}
 \end{frame}
 
 \begin{frame}
-	Using \eqref{eq:gauss-derivatives}, and integrating repeatedly by parts using our assumptions
+	Here, we integrated \eqref{eq:part} by parts. Using \eqref{eq:gauss-derivatives} and our assumptions, we repeatedly integrate \eqref{eq:parts} by parts to get
 	\begin{align}
-		\frac{dE\{g(X)\}}{dv} &\laplace \frac{1}{2}\int_{0}^{\infty}e^{-sv}\left(\int_{-\infty}^{\infty}g\frac{\partial^2 f}{\partial x^2}dx\right)dv \\
+		\frac{dE\{g(X)\}}{dv} &\laplace \frac{1}{2}\int_{0}^{\infty}e^{-sv}\left(\int_{-\infty}^{\infty}g\frac{\partial^2 f}{\partial x^2}dx\right)dv \label{eq:parts} \\
 		&= \frac{1}{2}\int_{0}^{\infty}e^{-sv}\left(\int_{-\infty}^{\infty}f\frac{\partial^2 g}{\partial x^2}dx\right)dv \\
-		&= \mathcal{L}\{E\left\{\frac{d^2g(X)}{dX^2}\right\}\}(s) \laplace \frac{1}{2}E\left\{\frac{d^2g(X)}{gX^2}\right\}
+		&= \mathcal{L}\{E\left\{\frac{d^2g(X)}{dX^2}\right\}\}(s) \laplaceinv \frac{1}{2}E\left\{\frac{d^2g(X)}{gX^2}\right\}
 		\label{eq:sol1-2}
 	\end{align}
+	as required.
 \end{frame}
 
 \begin{frame}
