@@ -13,6 +13,8 @@
 % Theme choice:
 \usetheme{CambridgeUS}
 \usepackage{amsmath}
+\usepackage{mathtools}
+\newcommand\laplace{\ensuremath{\stackrel{\mathclap{\mbox{$\mathcal{L}$}}}{\longleftrightarrow}}}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\cdf}[2]{\ensuremath{\text{F}_{#1}\left(#2\right)}}
 % Title page details: 
@@ -36,7 +38,7 @@
 \begin{frame}{Problem Statement}
 	\textbf{(Papoulis/Pillai, Exercise 5-48)} The random variable $X$ is $N(0; \sigma^2)$.
 	\begin{enumerate}
-		\item Using characteristic functions, show that if $g(x)$ is a function such that $g(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$, then (Price's Theorem)
+		\item Using Laplace transforms, show that if $g(x)$ is a function such that $g(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$, then (Price's Theorem)
 			\begin{align}
 				\frac{dE\{g(X)\}}{dv} = \frac{1}{2}E\left\{\frac{d^2g(X)}{dX^2}\right\} 
 				\label{eq:price}
@@ -50,56 +52,62 @@
 	Here, $v = \sigma^2$.
 \end{frame}
 
+\section{Properties of Normal Random Variables}
+\begin{frame}{PDF and Partial Derivatives of $N(\mu; \sigma^2)$}
+	Since $X \sim N(\mu; \sigma^2)$, the PDF of $X$ is given by
+		\begin{align}
+			f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)} \\
+			f(x, v) = \frac{1}{\sqrt{2\pi v}}\exp{\left(-\frac{(x - \mu)^2}{2v}\right)}
+			\label{eq:gauss-pdf}
+		\end{align}
+	Notice that
+		\begin{align}
+			\frac{\partial f}{\partial v} &= \frac{\exp{\left(\frac{(x - \mu)^2}{2v}\right)}((x - \mu)^2 - v)}{2\sqrt{2\pi v^5}} \\
+			\frac{\partial^2 f}{\partial x^2} &= \frac{\exp{\left(\frac{(x - \mu)^2}{2v}\right)}((x - \mu)^2 - v)}{\sqrt{2\pi v^5}} \\
+			\implies \frac{\partial f}{\partial v} &= \frac{1}{2}\frac{\partial^2 f}{\partial x^2}
+			\label{eq:gauss-derivatives}
+		\end{align}
+\end{frame}
+		
+\section{Laplace Transform}
+\begin{frame}{Definition and Properties of Laplace Transform}
+	The Laplace Transform of a real function $f(t)$ is given by
+	\begin{align}
+		\mathcal{L}\{f\}(s) = \int_{0}^{\infty}e^{-st}f(t)dt  
+		\label{eq:lap}
+	\end{align}
+	where $s \in \mathbb{C}$. Here, $k(s, t) = e^{-st}$ is called the kernel function. A useful property of Laplace transforms is the following, where the $n^{\text{th}}$ derivative of $f$ is assumed to be of exponential type.
+	\begin{align}
+		\mathcal{L}\{f^{(n)}\} = s^{n}\mathcal{L}\{f\} - \sum_{k = 1}^{n}s^{n - k}f^{(k - 1)}(0^+)
+		\label{eq:lap-diff}
+	\end{align}
+	For $n = 1$,
+	\begin{align}
+		\mathcal{L}\{f'\} = s\mathcal{L}\{f\} - f(0^+)
+		\label{eq:lap-diff-one}
+	\end{align}
+\end{frame}
+
 \section{Solution}
 \begin{frame}{Solution}
-	\begin{alertblock}{PMF and Characteristic Function of $X$}
-		Since $X \sim N(\mu; \sigma^2)$, the PMF of $X$ is given by
-		\begin{align}
-			f(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)}
-			\label{eq:gauss-pmf}
-		\end{align}
-		The characteristic function of $X$ is given by
-		\begin{align}
-			\phi_X(\omega) &= E[\exp{(-j\omega X)}] = \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^{-j\omega x}e^{-\frac{(x - \mu)^2}{2\sigma^2}}dx \\
-			&= \exp{(j\mu\omega + \frac{(\sigma j\omega)^2}{2})}\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x - (\mu + \sigma^2 j\omega))^2}{2\sigma^2}}dx \\
-			&= \exp{(j\mu\omega + \frac{(\sigma j\omega)^2}{2})}
-			\label{eq:char}
-		\end{align}
-	\end{alertblock}
-\end{frame}
-			
-\begin{frame}
-	\begin{alertblock}{Inverse Transform of $X$}
-		The inverse transform of $f(x)$ is given by
-		\begin{align}
-			f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\phi_X(\omega)e^{-j\omega x}d\omega
-			\label{eq:inv}
-		\end{align}
-			Here, $f(x)$ and $\phi_X(\omega)$ form a Fourier transform pair.
-	\end{alertblock}
-	To prove the first part, using \eqref{eq:char} and \eqref{eq:inv}, and noting that $\mu = 0$,
+	In this solution, we assume that $g^{(k)}(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$ for $k = 0, 1, 2$. Applying a Laplace transform, and noting that at $f(x, 0^+) = 0$,
 	\begin{align}
-		\frac{dE\{g(X)\}}{dv} &= \frac{d}{dv}\int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\phi_X(\omega)e^{-j\omega x}d\omega\right)dx \\
-		&= \int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\left(\frac{\partial}{\partial v}\phi_X(\omega)\right)e^{-j\omega x}d\omega\right)dx \\
-		&= \int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}\left(-\frac{\omega^2}{2}\right)\phi_X(\omega)e^{-j\omega x}d\omega\right)dx
-		\label{eq:lhs-diff}
+		\frac{dE\{g(X)\}}{dv} &\laplace s\mathcal{L}\{f\} \\
+		&= s\int_{0}^{\infty}e^{-sv}\left(\int_{-\infty}^{\infty}g(x)f(x, v)dx\right)dv \\
+		&= \int_{-\infty}^{\infty}g(x)\left(\int_{0}^{\infty}se^{-sv}f(x, v)dv\right)dx \\
+		&= -\int_{-\infty}^{\infty}g\left(\frac{\partial k}{\partial v}fdv\right)dx \\
+		&= \int_{-\infty}^{\infty}g\left(e^{-sv}\frac{\partial f}{\partial v}dv\right)dx
+		\label{eq:sol1-1}
 	\end{align}
 \end{frame}
 
 \begin{frame}
-	We can rewrite \eqref{eq:lhs-diff} using \eqref{eq:inv} as
+	Using \eqref{eq:gauss-derivatives}, and integrating repeatedly by parts using our assumptions
 	\begin{align}
-		\frac{dE\{g(X)\}}{dv} &= \frac{1}{2}\int_{-\infty}^{\infty}g(x)\left(\frac{1}{2\pi}\int_{-\infty}^{\infty}(-j\omega)^2\phi_X(\omega)e^{-j\omega x}d\omega\right)dx \\
-		&= \frac{1}{2}\int_{-\infty}^{\infty}g(x)\frac{\partial^2f(x)}{\partial x^2}dx
-		\label{eq:rhs-diff}
-	\end{align}
-
-	\noindent We assume that $g^{(k)}(x)\exp{(-\frac{x^2}{2\sigma^2})} \to 0$ as $|x| \to \infty$ for $k = 0, 1, 2$. Repeatedly integrating \eqref{eq:rhs-diff} by parts gives
-	\begin{align}
-		\frac{dE\{g(X)\}}{dv} &= \frac{1}{2}\int_{-\infty}^{\infty}g\frac{\partial^2f}{\partial x^2}dx \\
-		&= \frac{1}{2}g\frac{\partial f}{\partial x}\Big|_{-\infty}^{\infty} - \int_{-\infty}^{\infty}\frac{\partial g}{\partial x}\frac{\partial f}{\partial x}dx \\
-		&= \frac{1}{2}\int_{-\infty}^{\infty}\frac{\partial^2g}{\partial x^2}fdx - \frac{\partial g}{\partial x}f\Big|_{-\infty}^{\infty} = \frac{1}{2}E\left\{\frac{d^2g(X)}{dX^2}\right\} 
-		\label{eq:sol1}
+		\frac{dE\{g(X)\}}{dv} &\laplace \frac{1}{2}\int_{0}^{\infty}e^{-sv}\left(\int_{-\infty}^{\infty}g\frac{\partial^2 f}{\partial x^2}dx\right)dv \\
+		&= \frac{1}{2}\int_{0}^{\infty}e^{-sv}\left(\int_{-\infty}^{\infty}f\frac{\partial^2 g}{\partial x^2}dx\right)dv \\
+		&= \mathcal{L}\{E\left\{\frac{d^2g(X)}{dX^2}\right\}\}(s) \laplace \frac{1}{2}E\left\{\frac{d^2g(X)}{gX^2}\right\}
+		\label{eq:sol1-2}
 	\end{align}
 \end{frame}
 
@@ -115,7 +123,7 @@
 		\mu_n'(v) = \frac{1}{2}E\left\{n(n - 1)x^{n - 2}\right\} = \frac{n(n - 1)}{2}\mu_{n - 2}{(v)}
 		\label{eq:de}
 	\end{align}
-	However, note that if $v = 0$, then from \eqref{eq:gauss-pmf}, $x = 0$ and consequently $\mu_n(0) = 0$. Integrating \eqref{eq:de} and changing variables, we get
+	However, note that if $v = 0$, then from \eqref{eq:gauss-pdf}, $f(x) = 0$ and consequently $\mu_n(0) = 0$. Integrating \eqref{eq:de} and changing variables, we get
 	\begin{align}
 		\mu_n(v) = \frac{n(n - 1)}{2}\int_{0}^{v}\mu_{n - 2}(\beta)d\beta
 		\label{eq:sol2}
