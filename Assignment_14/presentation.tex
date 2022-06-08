@@ -19,6 +19,7 @@
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\cdf}[2]{\ensuremath{\text{F}_{#1}\left(#2\right)}}
 \providecommand{\erf}[1]{\ensuremath{\text{erf}(#1)}}
+\setbeamertemplate{caption}[numbered]
 % Title page details: 
 \title{Assignment 14} 
 \author{Gautam Singh (CS21BTECH11018)}
@@ -58,7 +59,7 @@
 			\eta_q = \frac{\eta - \eta_0}{\frac{\sigma}{\sqrt{n}}}
 			\label{eq:eta-q}
 		\end{align}
-		Observe that for the null hypothesis $H_0$, we have $Q \sim N(0; 1)$ so we can use the standard normal percentiles.
+		Observe that for the null hypothesis $H_0: \eta = \eta_0$, we have $Q \sim N(0; 1)$ so we can use the standard normal percentiles.
 	\end{alertblock}
 \end{frame}
 
@@ -73,12 +74,21 @@
 				\implies c &= \eta + z_{1 - \alpha}\frac{\sigma}{\sqrt{n}} = 8 + 2.326 \times \frac{2}{8} = 8.58
 				\label{eq:r-c}
 			\end{align}
-			Hence, $R_c$ is given by $\bar{x} > 8.58$. Now, if $H_1: \eta > \eta_0$, then
+			Hence, $R_c$ is given by $\bar{x} > 8.58$ (refer Figure \eqref{fig:graph}). Now, if $H_1: \eta > \eta_0$, then
 			\begin{align}
 				\eta_q = \frac{8.7 - 8}{\frac{2}{8}} = 2.8
 				\label{eq:new-eta}
 			\end{align}
 	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[height=0.8\textheight]{figs/14_1.png}
+		\caption{Critical region where null hypothesis is rejected.}
+		\label{fig:graph}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
