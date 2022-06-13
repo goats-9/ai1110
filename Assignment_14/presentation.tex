@@ -14,8 +14,6 @@
 \usetheme{CambridgeUS}
 \usepackage{amsmath}
 \usepackage{mathtools}
-\newcommand\laplace{\ensuremath{\stackrel{\mathclap{\mbox{$\mathcal{L}$}}}{\longleftrightarrow}}}
-\newcommand\laplaceinv{\ensuremath{\stackrel{\mathclap{\mbox{$\mathcal{L}^{-1}$}}}{\longleftrightarrow}}}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
 \providecommand{\cdf}[2]{\ensuremath{\text{F}_{#1}\left(#2\right)}}
 \providecommand{\erf}[1]{\ensuremath{\text{erf}(#1)}}
@@ -51,27 +49,24 @@
 	\begin{alertblock}{Random Variable Used}
 		When using the test statistic as the mean ($\bar{X}$), we consider the random variable
 		\begin{align}
-			Q = \frac{\bar{X} - \eta}{\frac{\sigma}{\sqrt{n}}}
+			Y = \frac{\bar{X} - \eta_0}{\frac{\sigma}{\sqrt{n}}}
 			\label{eq:Q}
 		\end{align}
-		We assume $\bar{X} \sim N(\eta_0 ; \frac{\sigma}{\sqrt{n}})$. Hence, $Q \sim N(\eta_q ; 0)$, where
+		We assume $\bar{X} \sim N(\eta_0 ; \frac{\sigma}{\sqrt{n}})$. Hence, $Y \sim N(\eta_y ; 1)$, where $\eta$ is the new parameter of $\bar{X}$
 		\begin{align}
-			\eta_q = \frac{\eta - \eta_0}{\frac{\sigma}{\sqrt{n}}}
+			\eta_y = \frac{\eta - \eta_0}{\frac{\sigma}{\sqrt{n}}}
 			\label{eq:eta-q}
 		\end{align}
-		Observe that for the null hypothesis $H_0: \eta = \eta_0$, we have $Q \sim N(0; 1)$ so we can use the standard normal percentiles.
+		Observe that for the null hypothesis $H_0: \eta = \eta_0$, we have $Y \sim N(0; 1)$ so we can use the standard normal percentiles.
 	\end{alertblock}
 \end{frame}
 
 \section{Solution}
 \begin{frame}{Solution}
-	Note that in this solution, writing $\pr{\ldots | H_0}$ denotes that the hypothesis $H_0$ is true. Also note that percentile notation is used. In particular, $z_p$ denotes the point of the $p^{th}$ percentile of the standard normal disribution.
 	\begin{enumerate}
-		\item[1] For $H_1: \eta > \eta_0$, the critical region is the half-line $q > c$, where 
+		\item[1] For $H_1: \eta > \eta_0$, the critical region is the half-line $y > c$, where $c = Q^{-1}(\alpha) = 2.326$. In terms of $\bar{X}$, the critical region is the half-line $\bar{x} > C$, where from \eqref{eq:eta-q},
 			\begin{align}
-				\pr{Q > c | H_0} &= \alpha \\
-				\implies c &= q_{1 - \alpha} \\
-				\implies c &= \eta + z_{1 - \alpha}\frac{\sigma}{\sqrt{n}} = 8 + 2.326 \times \frac{2}{8} = 8.58
+				C = \eta_0 + Q^{-1}(\alpha)\frac{\sigma}{\sqrt{n}} = 8 + 2.326 \times \frac{2}{8} = 8.58
 				\label{eq:r-c}
 			\end{align}
 			Hence, $R_c$ is given by $\bar{x} > 8.58$ (refer Figure \eqref{fig:graph}). Now, if $H_1: \eta > \eta_0$, then
@@ -95,15 +90,15 @@
 	\begin{enumerate}
 		\item[1] (Cont'd...) $\beta$ is a function of $\eta$ given by
 			\begin{align}
-				\beta(\eta) &= \pr{Q \notin R_c | H_1} = \pr{Q < c} \\
-				&= \erf{z_{1 - \alpha} - \eta_q} = 0.32
+				\beta(\eta) &= H_1:\pr{Y \notin R_c} = \pr{Y < c} \\
+				&= 1 - Q(Q^{-1}(\alpha) - \eta_y) = 0.32
 				\label{eq:beta-eta}
 			\end{align}
 		\item[2] Proceeding in reverse from \eqref{eq:beta-eta}, we have from the definition of $\beta$, 
 			\begin{align}
-				z_{1 - \alpha} - \eta_q &= z_{\beta} \\
-				\implies \eta_q &= z_{1 - \alpha} - z_{\beta} \\
-				&= z_{0.99} - z_{0.05} = 4.97
+				Q^{-1}(\alpha) - \eta_y &= Q^{-1}(1 - \beta) \\
+				\implies \eta_y &= Q^{-1}(\alpha) - Q^{-1}(1 - \beta) \\
+				&= Q^{-1}(0.01) - Q^{-1}(0.95) = 4.97
 				\label{eq:eta-q-rev}
 			\end{align}
 			Given that $\beta(\eta = 8.7) = 0.05$, we can also use \eqref{eq:eta-q} to get 
@@ -113,7 +108,7 @@
 			\end{align}
 			Thus, using \eqref{eq:r-c}, we get 
 			\begin{align}
-				c = 8 + z_{0.99}\frac{2}{\sqrt{201}} = 8.33
+				C = 8 + Q^{-1}(0.99)\frac{2}{\sqrt{201}} = 8.33
 				\label{eq:c-ans}
 			\end{align}
 	\end{enumerate}
