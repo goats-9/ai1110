@@ -39,7 +39,7 @@
 
 \section{Problem}
 \begin{frame}{Problem Statement}
-	\textbf{(Papoulis/Pillai, Exercise 8-25)} We are given a random variable $X$ with mean $\eta$ and standard deviation $\sigma = 2$, and we wish to test the hypothesis $\eta = 8$ against $\eta = 8.7$ with $\alpha = 0.01$ using as the test statistic the sample mean $\bar{x}$ of $n$ samples.
+	\textbf{(Papoulis/Pillai, Exercise 8-25)} We are given a random variable $X$ with mean $\eta$ and standard deviation $\sigma = 2$, and we wish to test the hypothesis $\eta_0 = 8$ against $\eta = 8.7$ with $\alpha = 0.01$ using as the test statistic the sample mean $\bar{x}$ of $n$ samples.
 	\begin{enumerate}
 		\item Find the critical region $R_c$ of the test and the resulting $\beta$ if $n = 64$. 
 		\item Find $n$ and $R_c$ if $\beta = 0.05$.
@@ -67,7 +67,7 @@
 \begin{frame}{Solution}
 	Note that in this solution, writing $\pr{\ldots | H_0}$ denotes that the hypothesis $H_0$ is true. Also note that percentile notation is used. In particular, $z_p$ denotes the point of the $p^{th}$ percentile of the standard normal disribution.
 	\begin{enumerate}
-		\item[1] For $\eta > \eta_0$, the critical region is the half-line $q > c$, where 
+		\item[1] For $H_1: \eta > \eta_0$, the critical region is the half-line $q > c$, where 
 			\begin{align}
 				\pr{Q > c | H_0} &= \alpha \\
 				\implies c &= q_{1 - \alpha} \\
@@ -86,7 +86,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[height=0.8\textheight]{figs/14_1.png}
-		\caption{Critical region where null hypothesis is rejected.}
+		\caption{Critical region where null hypothesis is not accepted. Here, $\eta_0 = 0$ and $\eta = 3$.}
 		\label{fig:graph}
 	\end{figure}
 \end{frame}
@@ -106,14 +106,14 @@
 				&= z_{0.99} - z_{0.05} = 4.97
 				\label{eq:eta-q-rev}
 			\end{align}
-			However, assuming that $\beta(8.7) = 0.05$, we can also use \eqref{eq:eta-q} to get 
+			Given that $\beta(\eta = 8.7) = 0.05$, we can also use \eqref{eq:eta-q} to get 
 			\begin{align}
-				n = \left(\frac{\sigma\eta_q}{\eta - \eta_0}\right)^2 = 129
+				n = \left(\frac{\sigma\eta_q}{\eta - \eta_0}\right)^2 = 201
 				\label{eq:n}
 			\end{align}
 			Thus, using \eqref{eq:r-c}, we get 
 			\begin{align}
-				c = 8 + z_{0.99}\frac{2}{\sqrt{129}} = 8.41
+				c = 8 + z_{0.99}\frac{2}{\sqrt{201}} = 8.33
 				\label{eq:c-ans}
 			\end{align}
 	\end{enumerate}
