@@ -21,7 +21,9 @@ N = 64
 sz = 10000
 
 n_q = np.sqrt(N)*(n_0 - n)/sigma
-A = norm.rvs(loc=n_q, scale=1, size=sz)
+mu = n_q*np.random.random()
+A = norm.rvs(loc=mu, scale=1, size=sz)
 ans = sz - np.count_nonzero(np.where(A > z))
-print("Number of outliers = ", ans)
-print("Percentage of outliers = ", (100.0*ans)/sz)
+print("Data drawn from normal distribution with mean", mu)
+print("Number of data points in critical region =", ans)
+print("Percentage of data points in critical region =", (100.0*ans)/sz)
