@@ -27,7 +27,7 @@ for i in range(0,80):
 	err_n = np.size(err_ind) #computing the probability
 	err.append(err_n/simlen) #storing the probability values in a list
 
-plt.plot(x,err)#plotting empirical CDF
+plt.plot(x,err,'bo')#plotting empirical CDF
 plt.plot(x,c)#plotting analytical CDF
 plt.grid() #creating the grid
 plt.xlabel('$x$')

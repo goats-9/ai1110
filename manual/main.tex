@@ -248,10 +248,15 @@ Let $U$ be a uniform random variable between 0 and 1.
 ,ref=\thesection.\theenumi]
 \item Generate $10^6$ samples of $U$ using a C program and save into a file called uni.dat .
 
-\solution Download the following files and execute the  C program.
+\solution Download the following files
 \begin{lstlisting}
-wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/exrand.c
-wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/coeffs.h
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/exrand.c
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/coeffs.h
+\end{lstlisting}
+and compile and execute the C program using
+\begin{lstlisting}
+$ gcc exrand.c -lm -Wall -g
+$ ./a.out
 \end{lstlisting}
 
 %
@@ -263,7 +268,11 @@ F_{U}(x) = \pr{U \leq x}
 
 \solution  The following code plots Fig. \ref{fig:uni_cdf}
 \begin{lstlisting}
-wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/cdf_plot.py
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/cdf_plot.py
+\end{lstlisting}
+It is executed with
+\begin{lstlisting}
+$ python3 cdf_plot.py
 \end{lstlisting}
 \begin{figure}
 \centering
@@ -307,21 +316,30 @@ The mean of $U$ is defined as
 %
 \begin{equation}
 E\sbrak{U} = \frac{1}{N}\sum_{i=1}^{N}U_i
+	\label{eq:mean-form}
 \end{equation}
 %
 and its variance as
 %
 \begin{equation}
 \text{var}\sbrak{U} = E\sbrak{U- E\sbrak{U}}^2 
+	\label{eq:var-form}
 \end{equation}
 
 Write a C program to  find the mean and variance of $U$.
 
 \solution
-The C program can be downloaded from
+The C program can be downloaded using
 \begin{lstlisting}
-wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/mean_var_uni.c
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/mean_var_uni.c
 \end{lstlisting}
+and compiled and executed with
+\begin{lstlisting}
+$ gcc mean_var_uni.c -lm -Wall -g
+$ ./a.out
+\end{lstlisting}
+The calculated mean is 0.500007 and the calculated variance is 0.083301.
+
 \item Verify your result theoretically given that
 \end{enumerate}
 %
@@ -380,19 +398,44 @@ Load gau.dat in python and plot the empirical CDF of $X$ using the samples in ga
 \end{figure}
 The required python file can be downloaded using
 \begin{lstlisting}
-wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/cdf_gauss_plot.py
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/cdf_gauss_plot.py
 \end{lstlisting}
+and executed using
+\begin{lstlisting}
+$ python3 cdf_gauss_plot.py
+\end{lstlisting}
+		\begin{enumerate}
+			\item The CDF is non-decreasing
+			\item It is right-continuous.
+			\item $\lim_{x \to -\infty}F_X(x) = 0$
+			\item $\lim_{x \to \infty}F_X(x) = 1$
+		\end{enumerate}
 \item
 Load gau.dat in python and plot the empirical PDF of $X$ using the samples in gau.dat. The PDF of $X$ is defined as
 \begin{align}
 p_{X}(x) = \frac{d}{dx}F_{X}(x)
 \end{align}
 What properties does the PDF have?
+
 \solution The PDF of $X$ is plotted in Fig. \ref{fig:gauss_pdf} using the code below
 \begin{lstlisting}
-wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/pdf_plot.py
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/pdf_plot.py
 \end{lstlisting}
-
+The figure is generated using
+\begin{lstlisting}
+$ python pdf_plot.py
+\end{lstlisting}
+The properties of a PDF $p_X(x)$ are as follows:
+		\begin{enumerate}
+			\item $\forall x \in \mathbb{R}$, $p_X(x) \geq 0$
+			\item $\int_{-\infty}^{\infty}p_X(x)dx = 1$
+			\item For $a < b$, $a, b \in \mathbb{R}$ 
+				\begin{align}
+					\pr{a < X < b} &= \pr{a \leq X \leq b} \\
+					&= \int_{a}^{b}p_X(x)dx
+				\end{align}
+				If we take $a = b$, then we get $\pr{X = a} = 0$.
+		\end{enumerate}
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{./figs/gau_pdf.png}
@@ -403,10 +446,19 @@ wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/
 \item Find the mean and variance of $X$ by writing a C program.
 
 \solution
-The C program is at
+The mean and variance have been calculated using \eqref{eq:mean-form} and \eqref{eq:var-form} respectively.
+
+\noindent The C program can be downloaded using
 \begin{lstlisting}
-wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/mean_var_gau.c
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/mean_var_gau.c
 \end{lstlisting}
+and compiled and executed with the following commands
+\begin{lstlisting}
+$ gcc mean_var_gau.c -lm -Wall -g
+$ ./a.out
+\end{lstlisting}
+The calculated mean is 0.000326 and the calculated variance is 1.000906.
+
 \item Given that 
 \begin{align}
 p_{X}(x) = \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}}, -\infty < x < \infty,
@@ -423,10 +475,18 @@ as the integrand is odd. This checks out with the empirical mean of 0.000326. Th
 		\begin{align}
 			\text{var}\sbrak{X} &= E\sbrak{X^2} - \left(E\sbrak{X}\right)^2 \\
 			&= \int_{-\infty}^{\infty}x^2\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{x^2}{2}\right)}dx \label{eq:int} \\
-			&= \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{x^2}{2}\right)}dx = 1 \\
+			&= \int_{0}^{\infty}\frac{2}{\sqrt{2\pi}}\sqrt{2t}e^{-t}dt \\
+			&= \frac{2}{\sqrt{\pi}}\Gamma\left(\frac{3}{2}\right) \\
+			&= \frac{1}{\sqrt{\pi}}\Gamma\left(\frac{1}{2}\right) = 1
 			\label{eq:gau-var}
 		\end{align}
-where we have integrated \eqref{eq:int} by parts. This agrees with the empirical variance of 1.000906.
+where we have used $t = \frac{x^2}{2}$ and so $dt = xdx$. We have also used the gamma function given as
+\begin{align}
+	\Gamma(n) = \int_{-\infty}^{\infty}x^{n - 1}e^{-x}dx \\
+	\Gamma(n) = (n - 1)\Gamma(n - 1)\ \text{for $n > 1$}
+\end{align}
+and the fact that $\Gamma(1/2) = \sqrt{\pi}$.
+This agrees with the empirical variance of 1.000906.
 %
 \end{enumerate}
 \section{From Uniform to Other}
@@ -445,14 +505,18 @@ and plot its CDF.
 \solution
 The relevant python code is at
 \begin{lstlisting}
-wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/cdf_exp_plot.py
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-probability/master/manual/codes/cdf_exp_plot.py
+\end{lstlisting}
+and can be executed with
+\begin{lstlisting}
+$ python3 cdf_exp_plot.py
 \end{lstlisting}
 
 and the CDF is plotted in Figure \eqref{fig:exp_cdf}.
 \begin{figure}
 \centering
-\includegraphics[width=\columnwidth]{./figs/gau_pdf.png}
-\caption{The PDF of $X$}
+\includegraphics[width=\columnwidth]{./figs/exp_cdf.png}
+\caption{The CDF of $V$}
 \label{fig:exp_cdf}
 \end{figure}
 
