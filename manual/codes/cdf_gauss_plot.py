@@ -30,7 +30,7 @@ for i in range(0,maxrange-1):
 	pdf.append(test) #storing the pdf values in a list
 
 rv = norm(0, 1)
-plt.plot(x,err,'bo')
+plt.plot(x,err,'o')
 plt.plot(x, rv.cdf(x))
 plt.grid() #creating the grid
 plt.xlabel('$x_i$')

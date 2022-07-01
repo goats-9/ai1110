@@ -69,7 +69,6 @@ fclose(fp);
 
 }
 
-
 //Defining the function for printing
 void print(double **p, int m,int n)
 {

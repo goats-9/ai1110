@@ -27,7 +27,7 @@ for i in range(0,50):
 	err_n = np.size(err_ind) #computing the probability
 	err.append(err_n/simlen) #storing the probability values in a list
 
-plt.plot(x,err,'bo')#plotting the CDF
+plt.plot(x,err,'o')#plotting the CDF
 plt.plot(np.concatenate([x1,x2]), np.concatenate([y1,y2]))
 plt.grid() #creating the grid
 plt.xlabel('$v$')
