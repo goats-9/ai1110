@@ -8,8 +8,10 @@ double **linalg_sub(double **a, double **b, int m, int n);
 double **linalg_inv(double **mat, int m);
 double **matmul(double **a, double **b, int m, int n, int p);
 double **transpose(double **a,  int m, int n);
+void triangular(char *str, int len);
 void uniform(char *str, int len);
 void gaussian(char *str, int len);
+void triangular(char *str, int len);
 double mean(char *str);
 //End function declaration
 
@@ -187,6 +189,23 @@ return c;
 }
 //End function for transpose of matrix
 
+//Defining the function for generating bernoulli random numbers
+void bernoulli(char *str, int len)
+{
+int i;
+FILE *fp;
+
+fp = fopen(str,"w");
+//Generate numbers
+for (i = 0; i < len; i++)
+{
+fprintf(fp,"%lf\n",(double)rand()/RAND_MAX < 0.5 ? -1.0 : 1.0);
+}
+fclose(fp);
+
+}
+//End function for generating bernoulli random numbers
+
 //Defining the function for generating uniform random numbers
 void uniform(char *str, int len)
 {
@@ -198,6 +217,23 @@ fp = fopen(str,"w");
 for (i = 0; i < len; i++)
 {
 fprintf(fp,"%lf\n",(double)rand()/RAND_MAX);
+}
+fclose(fp);
+
+}
+//End function for generating uniform random numbers
+
+//Defining the function for generating triangular random numbers
+void triangular(char *str, int len)
+{
+int i;
+FILE *fp;
+
+fp = fopen(str,"w");
+//Generate numbers
+for (i = 0; i < len; i++)
+{
+fprintf(fp,"%lf\n",(double)rand()/RAND_MAX + (double)rand()/RAND_MAX);
 }
 fclose(fp);
 

@@ -1,13 +1,18 @@
 #Importing numpy, scipy, mpmath and pyplot
 import numpy as np
 import mpmath as mp
-from scipy.stats import norm 
+import scipy
 import matplotlib.pyplot as plt
 
 #if using termux
 #import subprocess
 #import shlex
 #end if
+
+def qfunc(x):
+    return (0.5)*mp.erfc(x/np.sqrt(2))
+
+qfunc_vec = scipy.vectorize(qfunc, otypes=['double'])
 
 maxrange=50
 maxlim=6.0
@@ -29,9 +34,8 @@ for i in range(0,maxrange-1):
 	test = (err[i+1]-err[i])/(x[i+1]-x[i])
 	pdf.append(test) #storing the pdf values in a list
 
-rv = norm(0, 1)
 plt.plot(x,err,'o')
-plt.plot(x, rv.cdf(x))
+plt.plot(x, np.ones(maxrange) - qfunc_vec(x))
 plt.grid() #creating the grid
 plt.xlabel('$x_i$')
 plt.ylabel('$F_X(x_i)$')

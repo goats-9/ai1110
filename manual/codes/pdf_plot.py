@@ -34,7 +34,7 @@ for i in range(0,maxrange-1):
 def gauss_pdf(x):
 	return 1/mp.sqrt(2*np.pi)*np.exp(-x**2/2.0)
 	
-vec_gauss_pdf = scipy.vectorize(gauss_pdf)
+vec_gauss_pdf = scipy.vectorize(gauss_pdf, otypes=['double'])
 
 plt.plot(x[0:(maxrange-1)].T,pdf,'o')
 plt.plot(x,vec_gauss_pdf(x))#plotting the CDF

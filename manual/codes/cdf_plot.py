@@ -3,20 +3,22 @@ import numpy as np
 import matplotlib
 matplotlib.rcParams['backend'] = 'GTK3Agg'
 import matplotlib.pyplot as plt
-
+import scipy
 #if using termux
 #import subprocess
 #import shlex
 #end if
 
+def uni_cdf(x):
+    if (x < 0): return 0
+    elif (0 <= x < 1): 
+        return x*1.0
+    else: return 1
 
+arr_func = scipy.vectorize(uni_cdf, otypes=['double'])
 
 x = np.linspace(-4,4,80)#points on the x axis
 #points for analytical cdf
-c1 = np.zeros(40)
-c2 = np.linspace(0,1,10)
-c3 = np.ones(30)
-c = np.concatenate([c1, c2, c3])
 simlen = int(1e6) #number of samples
 err = [] #declaring probability list
 #randvar = np.random.normal(0,1,simlen)
@@ -28,7 +30,7 @@ for i in range(0,80):
 	err.append(err_n/simlen) #storing the probability values in a list
 
 plt.plot(x,err,'o')#plotting empirical CDF
-plt.plot(x,c)#plotting analytical CDF
+plt.plot(x,arr_func(x))#plotting analytical CDF
 plt.grid() #creating the grid
 plt.xlabel('$x$')
 plt.ylabel('$F_X(x)$')
