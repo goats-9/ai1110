@@ -15,7 +15,7 @@ nv = np.loadtxt('gau_noise.dat', dtype='double')
 sig = 5*bv + nv
 x = np.linspace(0, 1, sz)
 plt.plot(x, sig, '.')
-plt.xlabel('n')
+plt.xlabel('n ($\\times 10^3$)')
 plt.ylabel('y(n)')
 plt.grid()
 plt.savefig('../figs/5_2.png')
