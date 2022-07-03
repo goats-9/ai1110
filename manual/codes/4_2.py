@@ -4,10 +4,6 @@ import matplotlib
 matplotlib.rcParams['backend'] = 'GTK3Agg'
 import matplotlib.pyplot as plt
 import scipy
-#if using termux
-#import subprocess
-#import shlex
-#end if
 
 def tri_cdf(x):
     if (x < 0): return 0
@@ -23,7 +19,7 @@ x = np.linspace(-2,4,maxrange)#points on the x axis
 simlen = int(1e6) #number of samples
 err = [] #declaring probability list
 #randvar = np.random.normal(0,1,simlen)
-randvar = np.loadtxt('tri.dat',dtype='double')
+randvar = np.loadtxt('../data/tri.dat',dtype='double')
 #randvar = np.loadtxt('gau.dat',dtype='double')
 for i in range(maxrange):
 	err_ind = np.nonzero(randvar < x[i]) #checking probability condition
@@ -37,6 +33,3 @@ plt.xlabel('$x$')
 plt.ylabel('$F_T(x)$')
 plt.legend(["Simulation", "Analysis"])
 plt.savefig('../figs/4_2.png')
-#if using termux
-#subprocess.run(shlex.split("termux-open ../figs/uni_cdf.pdf"))
-#endif using termux

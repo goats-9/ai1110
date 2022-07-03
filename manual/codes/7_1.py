@@ -4,16 +4,11 @@ import mpmath as mp
 import scipy
 import matplotlib.pyplot as plt
 
-#if using termux
-#import subprocess
-#import shlex
-#end if
-
-bv = np.loadtxt('ber_new.dat', dtype='double')
-nv = np.loadtxt('gau.dat', dtype='double')
+bv = np.loadtxt('../data/ber_new.dat', dtype='double')
+nv = np.loadtxt('../data/gau.dat', dtype='double')
 
 def emp_err(g):
-    ral_file = "ral_"+str(int(g)).zfill(2)+".dat"
+    ral_file = "../data/ral_"+str(int(g)).zfill(2)+".dat"
     rv = np.loadtxt(ral_file, dtype='double')
     sig = rv*bv + nv
     n0 = np.count_nonzero(bv > 0)
@@ -37,7 +32,3 @@ plt.xlabel('$\gamma$')
 plt.ylabel('$P_e(\gamma)$')
 plt.legend(["Simulation", "Analysis"])
 plt.savefig('../figs/7_1.png')
-#subprocess.run(shlex.split("termux-open ../figs/uni_pdf.pdf"))
-#if using termux
-#subprocess.run(shlex.split("termux-open ../figs/gauss_pdf.pdf"))
-#else

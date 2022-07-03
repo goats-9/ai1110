@@ -4,11 +4,6 @@ import mpmath as mp
 import scipy 
 import matplotlib.pyplot as plt
 
-#if using termux
-#import subprocess
-#import shlex
-#end if
-
 def ral_pdf(x):
     if (0 <= x): return x*np.exp(-(x**2)/2)
     else: return 0
@@ -21,7 +16,7 @@ err = [] #declaring probability list
 pdf = [] #declaring pdf list
 #randvar = np.random.normal(0,1,simlen)
 #randvar = np.loadtxt('uni.dat',dtype='double')
-randvar = np.loadtxt('ral.dat',dtype='double')
+randvar = np.loadtxt('../data/ral.dat',dtype='double')
 
 for i in range(0,maxrange):
 	err_ind = np.nonzero(randvar < x[i]) #checking probability condition
@@ -39,7 +34,3 @@ plt.xlabel('$x$')
 plt.ylabel('$p_A(x)$')
 plt.legend(["Simulation","Analysis"])
 plt.savefig('../figs/6_3_pdf.png')
-#subprocess.run(shlex.split("termux-open ../figs/uni_pdf.pdf"))
-#if using termux
-#subprocess.run(shlex.split("termux-open ../figs/gauss_pdf.pdf"))
-#else

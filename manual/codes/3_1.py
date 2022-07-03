@@ -4,13 +4,6 @@ import matplotlib
 matplotlib.rcParams['backend'] = 'GTK3Agg'
 import matplotlib.pyplot as plt
 
-#if using termux
-#import subprocess
-#import shlex
-#end if
-
-
-
 x = np.linspace(-10,10,50)#points on the x axis
 x1 = np.linspace(-10,0,50)
 y1 = np.zeros(50)
@@ -19,7 +12,7 @@ y2 = 1 - np.exp(-x2/2)
 simlen = int(1e6) #number of samples
 err = [] #declaring probability list
 #randvar = np.random.normal(0,1,simlen)
-randvar = np.loadtxt('uni.dat',dtype='double')
+randvar = np.loadtxt('../data/uni.dat',dtype='double')
 randvar = -2*np.log(1 - randvar)
 #randvar = np.loadtxt('gau.dat',dtype='double')
 for i in range(0,50):
@@ -34,6 +27,3 @@ plt.xlabel('$v$')
 plt.ylabel('$F_V(v)$')
 plt.legend(["Simulation", "Analysis"])
 plt.savefig('../figs/3_1.png')
-#if using termux
-#subprocess.run(shlex.split("termux-open ../figs/uni_cdf.pdf"))
-#endif using termux

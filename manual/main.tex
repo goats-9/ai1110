@@ -409,11 +409,11 @@ $ python3 2_2.py
 The CDF of a probability distribution has the following properties:
 		\begin{enumerate}
 			\item It is non-decreasing
-			\item It is right-continuous.
+			\item It is right-continuous
 			\item $\lim_{x \to -\infty}F_X(x) = 0$
 			\item $\lim_{x \to \infty}F_X(x) = 1$
 		\end{enumerate}
-The CDF is expressed in terms of the Q-function as $F_X(x) = 1 - Q(x)$.
+The CDF of the normal distribution is expressed in terms of the Q-function as $F_X(x) = 1 - Q(x)$.
 \item
 Load gau.dat in python and plot the empirical PDF of $X$ using the samples in gau.dat. The PDF of $X$ is defined as
 \begin{align}
@@ -516,8 +516,7 @@ and can be executed with
 \begin{lstlisting}
 $ python3 3_1.py
 \end{lstlisting}
-
-and the CDF is plotted in Figure \eqref{fig:exp_cdf}.
+The CDF is plotted in Figure \eqref{fig:exp_cdf}.
 \begin{figure}[!htb] 
 \centering
 \includegraphics[width=\columnwidth]{./figs/3_1.png}
@@ -645,7 +644,7 @@ Using \autoref{eq:pdf-cdf},
 \item Verify your results through a plot.
 
 \solution
-This has been done in the plots \eqref{fig:tri-pdf} and \eqref{fig:tri-cdf}.
+This has been done in the plots \eqref{fig:tri-cdf} and \eqref{fig:tri-pdf}.
 \end{enumerate}
 
 \section{Maximum Likelihood}
@@ -658,7 +657,7 @@ This has been done in the plots \eqref{fig:tri-pdf} and \eqref{fig:tri-cdf}.
 where $A  = 5 \text{ dB}, X \in \cbrak{1, -1}$ is Bernoulli and $N \sim \gauss{0}{1}$.
 
 \solution
-The C file in Question 1.1 generates the numbers in the file gau\_ber.dat
+The C file in Question 1.1 generates the numbers in the file data/gau\_ber.dat
 \item Plot Y.
 
 \solution
@@ -713,14 +712,6 @@ Here, we assume $\pr{X = 1} = \pr{X = -1} = 0.5$. Thus,
 \item Verify by plotting the theoretical $P_e$.
 
 \solution
-The plot is coded in 
-\begin{lstlisting}
-$ wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/5_6.py
-\end{lstlisting}
-and can be executed using
-\begin{lstlisting}
-$ python3 5_6.py
-\end{lstlisting}
 We note that 
 \begin{align}
 	P_{e|0} &= \pr{\hat{X} = 1 | X = -1}\\
@@ -732,13 +723,27 @@ since $X$ and $N$ are independent. Writing a similar expression for $P_{e|1}$ an
 \begin{align}
 	\pr{N < -A} = \pr{N > A} = \qfunc{A}
 \end{align}
-it follows that $P_e = \qfunc{A}$. This is the idea used to plot the theoretical $P_e$.
+it follows that $P_e = \qfunc{A}$. This is the idea used to plot the theoretical $P_e$. The plot is coded both in the rectangular axes and the semilog-y axes. Download the relevant codes using 
+\begin{lstlisting}
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/5_6.py
+$ wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/5_6_semilog.py
+\end{lstlisting}
+and execute them using
+\begin{lstlisting}
+$ python3 5_6.py
+$ python3 5_6_semilogy.py
+\end{lstlisting}
+
 \begin{figure}[!htb]
 	\includegraphics[width=\columnwidth]{figs/5_6.png}
-	\caption{$P_e$ as a function of $A$}
-	\label{eq:P-e-A}
+	\caption{$P_e(A)$ (rectangular axes)}
+	\label{fig:ber-snr}
 \end{figure}
-
+\begin{figure}[!htb]
+	\includegraphics[width=\columnwidth]{figs/5_6_semilogy.png}
+	\caption{$P_e(A)$ (semilog-y axes)}
+	\label{fig:ber-snr-semilog}
+\end{figure}
 \end{enumerate}
 
 \section{Gaussian to Other}
@@ -783,7 +788,7 @@ However, $V = X_1^2 + X_2^2 = R^2 \geq 0$, thus $F_V(x) = 0$ for $x \geq 0$.
 			&= \int_{0}^{\sqrt{x}}r\exp{\brak{-\frac{r^2}{2}}}dr \\
 			&= \int_{0}^{\frac{x}{2}}e^{-t}dt = 1 - e^{-\frac{x}{2}}
 		\end{align}
-where $t = -\frac{r^2}{2}$ and so, for $x \geq 0$, 
+where $t = \frac{r^2}{2}$ and so, for $x \geq 0$, 
 		\begin{align}
 			p_V(x) = \frac{1}{2}e^{-\frac{x}{2}}
 		\end{align}
@@ -800,12 +805,12 @@ Hence,
 				0 & x < 0
 			\end{cases} \label{eq:chi-pdf} 
 		\end{align}
-The equations \eqref{eq:chi-cdf} and \eqref{eq:chi-pdf} have been used to generate the plots. The Python code can be downloaded using
+The equations \eqref{eq:chi-cdf} and \eqref{eq:chi-pdf} have been used to generate the plots. The Python code can be downloaded from
 \begin{lstlisting}
 $ wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/6_1_cdf.py
 $ wget https://raw.githubusercontent.com/goats-9/ai1110-assignments/master/manual/codes/6_1_pdf.py
 \end{lstlisting}
-and run by typing the commands
+Execute the codes by typing the commands
 \begin{lstlisting}
 $ python3 6_1_cdf.py
 $ python3 6_1_pdf.py
@@ -946,6 +951,6 @@ where we have integrated by parts and $f_N$ denotes the standard normal distribu
 \item Plot $P_e$ in problems 7.1 and 7.3 on the same graph wrt $\gamma$. Comment.
 
 \solution
-This has been done in problem 7.1 using the result \eqref{eq:exp-err-ral}. We observe that $P_{e|0} = E\sbrak{P_e(N)}$.
+		This has been done in Figure \eqref{fig:err-gamma} using the result \eqref{eq:exp-err-ral}. We observe that $P_{e|0} = E\sbrak{P_e(N)}$.
 \end{enumerate}
 \end{document}

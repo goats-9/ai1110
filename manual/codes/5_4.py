@@ -1,9 +1,12 @@
 import numpy as np
 
 sz = 1000
-randvar = np.loadtxt('gau_noise.dat', dtype='double')
-chkvar = np.loadtxt('ber_gau.dat', dtype='double')
-err_pos = chkvar - randvar - 5*np.ones(sz)
-err_neg = chkvar - randvar + 5*np.ones(sz)
-print("X = 1: ", (1.0)*np.count_nonzero(err_pos)/sz)
-print("X = -1: ", (1.0)*np.count_nonzero(err_neg)/sz)
+nv = np.loadtxt('../data/gau_noise.dat', dtype='double')
+bv = np.loadtxt('../data/ber.dat', dtype='double')
+sig = 5*bv + nv
+e0 = np.count_nonzero((sig < 0) & (bv > 0))
+n0 = np.count_nonzero(bv > 0)
+e1 = np.count_nonzero((sig > 0) & (bv < 0))
+n1 = np.count_nonzero(bv < 0)
+print("X = 1: ", (1.0)*e0/n0)
+print("X = -1: ", (1.0)*e1/n1)

@@ -3,8 +3,8 @@ import mpmath as mp
 from matplotlib import pyplot as plt
 import scipy
 
-bv = np.loadtxt('ber.dat', dtype='double')
-nv = np.loadtxt('gau_noise.dat', dtype='double')
+bv = np.loadtxt('../data/ber.dat', dtype='double')
+nv = np.loadtxt('../data/gau_noise.dat', dtype='double')
 
 def error(a):
     sig = a*bv + nv

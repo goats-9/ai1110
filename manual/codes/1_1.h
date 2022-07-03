@@ -15,6 +15,7 @@ void chi2(char *str, int len);
 void ral(char *str, int gamma, int len);
 void triangular(char *str, int len);
 double mean(char *str);
+double variance(char *str);
 //End function declaration
 
 #include <math.h>
@@ -265,6 +266,29 @@ return temp;
 
 }
 //End function for calculating the mean of random numbers
+
+//Defining the function for calculating the variance of random numbers
+double variance(char *str)
+{
+int i=0,c;
+FILE *fp;
+double x, temp=0.0, m = mean(str);
+
+fp = fopen(str,"r");
+//get numbers from file
+while(fscanf(fp,"%lf",&x)!=EOF)
+{
+//Count numbers in file
+i=i+1;
+//Add all numbers in file
+temp = temp + (x - m)*(x - m);
+}
+fclose(fp);
+temp = temp/(i-1);
+return temp;
+
+}
+//End function for calculating the variance of random numbers
 
 //Defining the function for generating Gaussian random numbers
 void gaussian(char *str, int sig, int len)

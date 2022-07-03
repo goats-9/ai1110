@@ -4,11 +4,6 @@ import mpmath as mp
 import scipy
 import matplotlib.pyplot as plt
 
-#if using termux
-#import subprocess
-#import shlex
-#end if
-
 def qfunc(x):
     return (0.5)*mp.erfc(x/np.sqrt(2))
 
@@ -23,7 +18,7 @@ pdf = [] #declaring pdf list
 h = 2*maxlim/(maxrange-1);
 #randvar = np.random.normal(0,1,simlen)
 #randvar = np.loadtxt('uni.dat',dtype='double')
-randvar = np.loadtxt('gau.dat',dtype='double')
+randvar = np.loadtxt('../data/gau.dat',dtype='double')
 
 for i in range(0,maxrange):
 	err_ind = np.nonzero(randvar < x[i]) #checking probability condition
@@ -41,7 +36,3 @@ plt.xlabel('$x_i$')
 plt.ylabel('$F_X(x_i)$')
 plt.legend(["Simulation", "Analysis"])
 plt.savefig('../figs/2_2.png')
-#subprocess.run(shlex.split("termux-open ../figs/uni_pdf.pdf"))
-#if using termux
-#subprocess.run(shlex.split("termux-open ../figs/gauss_pdf.pdf"))
-#else
