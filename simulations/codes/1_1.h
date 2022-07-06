@@ -72,7 +72,7 @@ fp = fopen(str, "r");
 //End function for reading matrix from file
 
 fclose(fp);
- return a;
+return a;
 
 }
 

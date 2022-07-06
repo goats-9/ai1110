@@ -4,7 +4,7 @@ import mpmath as mp
 import scipy
 import matplotlib.pyplot as plt
 
-bv = np.loadtxt('../data/ber_new.dat', dtype='double')
+bv = np.loadtxt('../data/ber.dat', dtype='double')
 nv = np.loadtxt('../data/gau.dat', dtype='double')
 
 def emp_err(g):
