@@ -683,7 +683,15 @@ $ python3 5_2.py
 \item Guess how to estimate $X$ from $Y$.
 
 \solution
-From the plot of $Y$, we see that $X = 1$ usually correlates to $Y > 0$ and $X = -1$ correlates to $Y < 0$.
+From the plot of $Y$, we see that the estimate model can be written as
+\begin{align}
+	\hat{X} = 
+	\begin{cases}
+		1 & Y \geq 0 \\
+		0 & Y < 0
+	\end{cases}
+\end{align}
+
 \item Find 
 	\begin{align}
 		P_{e|0} = \pr{\hat{X} = -1|X = 1}
