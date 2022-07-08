@@ -25,10 +25,10 @@ expected_err_vec = scipy.vectorize(expected_err, otypes=['double'])
 maxrange=100
 G = np.linspace(1,10,10)
 x = np.linspace(0,10,1000)
-plt.semilogy(G, emp_err_vec(G), '.')
-plt.semilogy(x, expected_err_vec(x))
+plt.loglog(G, emp_err_vec(G), '.')
+plt.loglog(x, expected_err_vec(x))
 plt.grid() #creating the grid
 plt.xlabel('$\gamma$')
 plt.ylabel('$P_e(\gamma)$')
 plt.legend(["Simulation", "Analysis"])
-plt.savefig('../figs/7_1_semilog.png')
+plt.savefig('../figs/7_1_loglog.png')
