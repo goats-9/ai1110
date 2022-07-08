@@ -18,7 +18,8 @@ def emp_err(g):
 emp_err_vec = scipy.vectorize(emp_err, otypes=['double'])
 
 def expected_err(g):
-    return 0.5*(1 - ((g/(g+2))**(0.5)))
+    g_new = 10**(g/10.0)
+    return 0.5*(1 - ((g_new/(g_new+2))**(0.5)))
 
 expected_err_vec = scipy.vectorize(expected_err, otypes=['double'])
 

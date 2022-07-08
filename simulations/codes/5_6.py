@@ -7,7 +7,8 @@ bv = np.loadtxt('../data/ber.dat', dtype='double')
 nv = np.loadtxt('../data/gau.dat', dtype='double')
 
 def error(a):
-    sig = a*bv + nv
+    a_new = 10**(a/10.0)
+    sig = a_new*bv + nv
     n0 = np.count_nonzero(bv > 0)
     n1 = np.count_nonzero(bv < 0)
     e0 = np.count_nonzero((sig < 0) & (bv > 0)) 
@@ -23,7 +24,7 @@ qfunc_vec = scipy.vectorize(qfunc, otypes=['double'])
 
 A = np.linspace(0, 10, 11)
 plt.plot(A, err_vec(A), '.')
-plt.plot(A, qfunc_vec(A))
+plt.plot(A, qfunc_vec(10**(A/10.0)))
 plt.grid()
 plt.xlabel('$A$ (dB)')
 plt.ylabel('$P_e(A)$')

@@ -11,9 +11,9 @@ double **transpose(double **a,  int m, int n);
 void bernoulli(char *str, int len);
 void triangular(char *str, int len);
 void uniform(char *str, int len);
-void gaussian(char *str, int sig, int len);
+void gaussian(char *str, double sig, int len);
 void chi2(char *str, int len);
-void ral(char *str, int gamma, int len);
+void ral(char *str, double gamma, int len);
 void triangular(char *str, int len);
 double mean(char *str);
 double variance(char *str);
@@ -292,7 +292,7 @@ return temp;
 //End function for calculating the variance of random numbers
 
 //Defining the function for generating Gaussian random numbers
-void gaussian(char *str, int sig, int len)
+void gaussian(char *str, double sig, int len)
 {
 int i,j;
 double temp;
@@ -342,7 +342,7 @@ fclose(fp);
 //End function for generating chi-squared random numbers
 
 //Defining the function for generating rayleigh random numbers
-void ral(char *str, int gamma, int len)
+void ral(char *str, double gamma, int len)
 {
 int i,j;
 double temp1, temp2;

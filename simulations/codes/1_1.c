@@ -37,12 +37,13 @@ ral("../data/ral.dat", 2, sz);
 
 //Rayleigh*Bernoulli + Gaussian
 //Generate files for Rayleigh Distribution
-//with 0 <= gamma <= 10
+//with 1 <= SNR(dB) <= 10
 for (int i = 1; i < 11; i++) { 
 	char file[19] = "../data/ral_xy.dat";
 	file[13] = (i%10) + '0';
 	file[12] = (i/10) + '0';
-	ral(file, i, sz);
+	double x = pow(10, i/10.0);
+	ral(file, x, sz);
 }
 return 0;
 }
