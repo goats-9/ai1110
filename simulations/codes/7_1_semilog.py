@@ -24,7 +24,7 @@ def expected_err(g):
 expected_err_vec = scipy.vectorize(expected_err, otypes=['double'])
 
 maxrange=100
-G = np.linspace(1,10,10)
+G = np.linspace(0,10,11)
 x = np.linspace(0,10,1000)
 plt.semilogy(G, emp_err_vec(G), '.')
 plt.semilogy(x, expected_err_vec(x))

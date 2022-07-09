@@ -4,22 +4,23 @@ import mpmath as mp
 import scipy
 import matplotlib.pyplot as plt
 
-bv = np.loadtxt('../data/ber.dat', dtype='double')
-nv = np.loadtxt('../data/gau.dat', dtype='double')
+bv = np.loadtxt('../data/ber_2D.dat', dtype='double')
+nv = np.loadtxt('../data/gau_2D.dat', dtype='double')
 
 def emp_err(g):
-    ral_file = "../data/ral_"+str(int(g)).zfill(2)+".dat"
-    rv = np.loadtxt(ral_file, dtype='double')
-    sig = rv*bv + nv
-    n0 = np.count_nonzero(bv > 0)
-    e0 = np.count_nonzero((sig < 0) & (bv > 0)) 
+    sig = (10**(g/10))*bv + nv
+    n0 = np.count_nonzero(bv[:,0] > 0)
+    e0 = np.count_nonzero((sig[:,0] < sig[:,1]) & (bv[:,0] > 0))
     return e0/n0
 
 emp_err_vec = scipy.vectorize(emp_err, otypes=['double'])
 
-def expected_err(g):
-    g_new = 10**(g/10.0)
-    return 0.5*(1 - ((g_new/(g_new+2))**(0.5)))
+def qfunc(x):
+    return (0.5)*mp.erfc(x/np.sqrt(2))
+
+def expected_err(snr):
+    snr_new = 10**(snr/10)
+    return qfunc(snr_new*np.sqrt(2))
 
 expected_err_vec = scipy.vectorize(expected_err, otypes=['double'])
 
@@ -29,7 +30,7 @@ x = np.linspace(0,10,1000)
 plt.plot(G, emp_err_vec(G), '.')
 plt.plot(x, expected_err_vec(x))
 plt.grid() #creating the grid
-plt.xlabel('$\gamma$')
-plt.ylabel('$P_e(\gamma)$')
+plt.xlabel('SNR')
+plt.ylabel('$P_e$(SNR)')
 plt.legend(["Simulation", "Analysis"])
-plt.savefig('../figs/7_1.png')
+plt.savefig('../figs/8_3.png')

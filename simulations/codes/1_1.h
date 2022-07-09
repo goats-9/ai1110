@@ -9,9 +9,10 @@ double **linalg_inv(double **mat, int m);
 double **matmul(double **a, double **b, int m, int n, int p);
 double **transpose(double **a,  int m, int n);
 void bernoulli(char *str, int len);
+void bernoulli2D(char *str, int len);
 void triangular(char *str, int len);
 void uniform(char *str, int len);
-void gaussian(char *str, double sig, int len);
+void gaussian(char *str, double sig, int len, int dim);
 void chi2(char *str, int len);
 void ral(char *str, double gamma, int len);
 void triangular(char *str, int len);
@@ -199,7 +200,6 @@ void bernoulli(char *str, int len)
 {
 int i;
 FILE *fp;
-
 fp = fopen(str,"w");
 //Generate numbers
 for (i = 0; i < len; i++)
@@ -210,6 +210,21 @@ fclose(fp);
 
 }
 //End function for generating bernoulli random numbers
+
+//Defining the function for generating 2D bernoulli samples (1, -1) or (-1, 1)
+void bernoulli2D(char *str, int len)
+{ 
+int i;
+FILE *fp;
+fp = fopen(str,"w");
+//Generate numbers
+for (i = 0; i < len; i++)
+{
+(double)rand()/RAND_MAX < 0.5 ? fprintf(fp,"%lf %lf\n", -1.0, 1.0) : fprintf(fp, "%lf %lf\n", 1.0, -1.0);
+}
+fclose(fp);
+}
+//End function for generating 2D bernoulli samples
 
 //Defining the function for generating uniform random numbers
 void uniform(char *str, int len)
@@ -292,23 +307,27 @@ return temp;
 //End function for calculating the variance of random numbers
 
 //Defining the function for generating Gaussian random numbers
-void gaussian(char *str, double sig, int len)
+void gaussian(char *str, double sig, int len, int dim)
 {
-int i,j;
+int i,j,k;
 double temp;
 FILE *fp;
-
 fp = fopen(str,"w");
 //Generate numbers
 for (i = 0; i < len; i++)
 {
+for (j = 0; j < dim; j++)
+{
 temp = 0;
-for (j = 0; j < 12; j++)
+for (k = 0; k < 12; k++)
 {
 temp += (double)rand()/RAND_MAX;
 }
 temp-=6;
-fprintf(fp,"%lf\n",sig*temp);
+fprintf(fp,"%lf",sig*temp);
+if (j != dim - 1) fprintf(fp, " ");
+else fprintf(fp, "\n");
+}
 }
 fclose(fp);
 

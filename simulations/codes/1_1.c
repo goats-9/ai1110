@@ -12,7 +12,7 @@ int sz = 1000000;
 uniform("../data/uni.dat", sz);
 
 //Gaussian random numbers
-gaussian("../data/gau.dat", 1, sz);
+gaussian("../data/gau.dat", 1, sz, 1);
 
 //Triangular random numbers
 triangular("../data/tri.dat", sz);
@@ -37,13 +37,18 @@ ral("../data/ral.dat", 2, sz);
 
 //Rayleigh*Bernoulli + Gaussian
 //Generate files for Rayleigh Distribution
-//with 1 <= SNR(dB) <= 10
-for (int i = 1; i < 11; i++) { 
+//with 0 <= SNR(dB) <= 10
+for (int i = 0; i < 11; i++) { 
 	char file[19] = "../data/ral_xy.dat";
 	file[13] = (i%10) + '0';
 	file[12] = (i/10) + '0';
 	double x = pow(10, i/10.0);
 	ral(file, x, sz);
 }
+
+//Gaussian and Bernoulli random numbers, two dimensions
+gaussian("../data/gau_2D.dat", 1, sz, 2);
+bernoulli2D("../data/ber_2D.dat", sz);
+
 return 0;
 }
