@@ -8,7 +8,7 @@ bv = np.loadtxt('../data/ber_2D.dat', dtype='double')
 nv = np.loadtxt('../data/gau_2D.dat', dtype='double')
 
 def emp_err(g):
-    sig = (10**(g/10))*bv + nv
+    sig = np.sqrt(10**(g/10))*bv + nv
     n0 = np.count_nonzero(bv[:,0] > 0)
     e0 = np.count_nonzero((sig[:,0] < sig[:,1]) & (bv[:,0] > 0))
     return e0/n0
@@ -20,7 +20,7 @@ def qfunc(x):
 
 def expected_err(snr):
     snr_new = 10**(snr/10)
-    return qfunc(snr_new*np.sqrt(2))
+    return qfunc(np.sqrt(2*snr_new))
 
 expected_err_vec = scipy.vectorize(expected_err, otypes=['double'])
 
