@@ -1121,6 +1121,7 @@ where
 	\boldsymbol{\mu} &= E\brak{\vec{X}} \\
 	\vec{\Sigma_{x}} &= E\sbrak{\brak{\vec{x}-\boldsymbol{\mu}}\brak{ \vec{x}-\boldsymbol{\mu}}^{\top}}
 \end{align}
+Here, since the variables are normalized and i.i.d., $\vec{\Sigma}_{\vec{x}} = \vec{I}$ and $\vec{\Sigma}$
 We write using Bayes' theorem,
 \begin{align}
 	&\pr{\vec{x} = \vec{s}_0 | \vec{Y} = \vec{y}} \nonumber \\
@@ -1136,12 +1137,12 @@ and
 Therefore, the decision boundary is given by, assuming $\pr{\vec{x} = \vec{s}_0} = p$,
 \begin{align}
 	\pr{\vec{x} = \vec{s}_0 | \vec{Y} = \vec{y}} \gtrless& \pr{\vec{x} = \vec{s}_1 | \vec{Y} = \vec{y}} \\
-	pf_N\brak{\vec{y} - A\vec{s}_0} \gtrless& (1 - p)f_N\brak{\vec{y} - A\vec{s}_1} \\
+	pf_{\vec{X}}\brak{\vec{y} - A\vec{s}_0} \gtrless& (1 - p)f_{\vec{X}}\brak{\vec{y} - A\vec{s}_1} \\
 	\exp{\brak{-\frac{1}{2}4A\brak{y_1 - y_2}}} \gtrless& \frac{1 - p}{p} \\
 	2\brak{y_2 - y_1} \gtrless& \ln{\brak{\frac{1 - p}{p}}} \\
 	y_2 - y_1 \gtrless& \frac{1}{2}\ln{\brak{\frac{1 - p}{p}}}
 \end{align}
-or $y - x \gtrless \frac{1}{2}\ln{\brak{\frac{1 - p}{p}}}$.
+or $y - x = \frac{1}{2}\ln{\brak{\frac{1 - p}{p}}}$.
 
 \end{enumerate}
 \end{document}
