@@ -1107,5 +1107,41 @@ We have,
 		\label{eq:p-e-2D}
 \end{align}
 where $N \define n_2 - n_1 \sim \gauss{0}{2}$ and $\textrm{SNR} = \frac{E\sbrak{A^2}}{\sigma_N^2}$.
+
+\item Find the optimal decision boundary using MAP criterion.
+
+\solution
+Note that in this solution, we write the bivariate gaussian PDF as
+\begin{align}
+	f_{\vec{X}}(\vec{x}) = \frac{\exp{\brak{-\frac{1}{2}\brak{\brak{\vec{x}-\boldsymbol{\mu}}^\top\vec{\Sigma_{x}}^{-1}\brak{\vec{x}-\boldsymbol{\mu}}}}}}{2\pi\sqrt{\abs{\vec{\Sigma_{x}}}}}
+\end{align}
+where
+\begin{align}
+	\vec{X} &= \myvec{x_1\\x_2}\\
+	\boldsymbol{\mu} &= E\brak{\vec{X}} \\
+	\vec{\Sigma_{x}} &= E\sbrak{\brak{\vec{x}-\boldsymbol{\mu}}\brak{ \vec{x}-\boldsymbol{\mu}}^{\top}}
+\end{align}
+We write using Bayes' theorem,
+\begin{align}
+	&\pr{\vec{x} = \vec{s}_0 | \vec{Y} = \vec{y}} \nonumber \\
+	&= \frac{\pr{\vec{Y} = \vec{y} | \vec{x} = \vec{s}_0}\pr{\vec{x} = \vec{s}_0}}{p_{\vec{Y}}(\vec{y})} \\
+	&= \frac{f_{\vec{Y}}\brak{\vec{y} - A\vec{s}_0}\pr{\vec{x} = \vec{s}_0}}{p_\vec{Y}(\vec{y})}
+\end{align}
+and
+\begin{align}
+	&\pr{\vec{x} = \vec{s}_1 | \vec{Y} = \vec{y}} \nonumber\\
+	&= \frac{\pr{\vec{y} = y | \vec{x} = \vec{s}_1}\pr{\vec{x} = \vec{s}_1}}{p_{\vec{Y}}(\vec{y})} \\
+	&= \frac{f_{\vec{Y}}\brak{\vec{y} - A\vec{s}_1}\pr{\vec{x} = \vec{s}_1}}{p_\vec{Y}(\vec{y})}
+\end{align}
+Therefore, the decision boundary is given by, assuming $\pr{\vec{x} = \vec{s}_0} = p$,
+\begin{align}
+	\pr{\vec{x} = \vec{s}_0 | \vec{Y} = \vec{y}} \gtrless& \pr{\vec{x} = \vec{s}_1 | \vec{Y} = \vec{y}} \\
+	pf_N\brak{\vec{y} - A\vec{s}_0} \gtrless& (1 - p)f_N\brak{\vec{y} - A\vec{s}_1} \\
+	\exp{\brak{-\frac{1}{2}4A\brak{y_1 - y_2}}} \gtrless& \frac{1 - p}{p} \\
+	2\brak{y_2 - y_1} \gtrless& \ln{\brak{\frac{1 - p}{p}}} \\
+	y_2 - y_1 \gtrless& \frac{1}{2}\ln{\brak{\frac{1 - p}{p}}}
+\end{align}
+or $y - x \gtrless \frac{1}{2}\ln{\brak{\frac{1 - p}{p}}}$.
+
 \end{enumerate}
 \end{document}
